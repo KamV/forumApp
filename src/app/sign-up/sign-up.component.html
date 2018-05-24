@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-title class="text-center">Регистрация</mat-card-title>
+  <mat-card-content>
+    <form class="signup-form" [formGroup]="form" (submit)="signup()">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Логин" formControlName="login"/>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="password" placeholder="Пароль" formControlName="password"/>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="E-mail" formControlName="email"/>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Никнейм" formControlName="nickname"/>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="date" placeholder="Дата рождения" formControlName="date"/>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary">Зарегистрироваться</button>
+    </form>
+  </mat-card-content>
+</mat-card>

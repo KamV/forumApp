@@ -1,0 +1,9 @@
+:host {
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
