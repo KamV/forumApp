@@ -1,3 +1,7 @@
+<mat-toolbar color="primary">
+  <span class="flex-row"></span>
+  <a mat-button routerLink="/signin">Авторизация</a>
+</mat-toolbar>
 <mat-card>
   <mat-card-title class="text-center">Регистрация</mat-card-title>
   <mat-card-content>
@@ -15,7 +19,7 @@
         <input matInput placeholder="Никнейм" formControlName="nickname"/>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput type="date" placeholder="Дата рождения" formControlName="date"/>
+        <input matInput type="date" placeholder="Дата рождения" formControlName="birthDate"/>
       </mat-form-field>
       <button type="submit" mat-raised-button color="primary">Зарегистрироваться</button>
     </form>
