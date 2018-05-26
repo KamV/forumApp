@@ -4,6 +4,7 @@ import { BooksService } from '../services/books.service';
 import { QuotesService } from '../services/quotes.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-quotes',
@@ -24,12 +25,23 @@ export class QuotesComponent implements OnInit {
 
   displayedColumns = ['body', 'updateButton', 'deleteButton'];
 
+  showAdminMenu = false;
+
   constructor(private formBuilder: FormBuilder,
     private authorsService: AuthorsService,
     private booksService: BooksService,
-    private quotesService: QuotesService) { }
+    private quotesService: QuotesService,
+    private authService: AuthService) { }
 
   ngOnInit() {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (currentUser && currentUser.role == 'ADMIN') {
+      this.showAdminMenu = true;
+    } else {
+      this.showAdminMenu = false;
+    }
+
     this.form = this.formBuilder.group({
       book: '',
       body: ''
@@ -84,6 +96,10 @@ export class QuotesComponent implements OnInit {
 
   deleteQuote(quote: any) {
     this.quotesService.deleteQuote(quote);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

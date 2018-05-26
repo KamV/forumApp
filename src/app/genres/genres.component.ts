@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GenresService } from '../services/genres.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-genres',
@@ -16,10 +17,21 @@ export class GenresComponent implements OnInit {
 
   displayedColumns = ['name', 'updateButton', 'deleteButton'];
 
+  showAdminMenu = false;
+
   constructor(private formBuilder: FormBuilder,
-    private genresService: GenresService) { }
+    private genresService: GenresService,
+    private authService: AuthService) { }
 
   ngOnInit() {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (currentUser && currentUser.role == 'ADMIN') {
+      this.showAdminMenu = true;
+    } else {
+      this.showAdminMenu = false;
+    }
+
     this.form = this.formBuilder.group({
         name: ''
     });
@@ -43,6 +55,10 @@ export class GenresComponent implements OnInit {
 
   deleteGenre(genre: any) {
     this.genresService.deleteGenre(genre);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

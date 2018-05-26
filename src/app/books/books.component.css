@@ -17,3 +17,7 @@ th, td {
 .date-input {
   text-align: right;
 }
+
+.flex-row {
+  flex-grow: 1;
+}

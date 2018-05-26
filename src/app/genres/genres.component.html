@@ -1,4 +1,15 @@
-<mat-toolbar color="primary"></mat-toolbar>
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/main">Главная</button>
+  <span class="flex-row"></span>
+  <button mat-button [hidden]="!showAdminMenu" [matMenuTriggerFor]="menu">Администрирование</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/admin/authors">Авторы</button>
+      <button mat-menu-item routerLink="/admin/books">Книги</button>
+      <button mat-menu-item routerLink="/admin/genres">Жанры</button>
+      <button mat-menu-item routerLink="/admin/quotes">Цитаты</button>
+    </mat-menu>
+  <button mat-button (click)="logout()">Выйти</button>
+</mat-toolbar>
 <mat-card>
   <mat-card-content>
     <form [formGroup]="form" (submit)="addGenre()">

@@ -3,13 +3,16 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { MatButtonModule,
   MatCardModule,
   MatInputModule,
   MatToolbarModule,
   MatTableModule,
   MatCheckboxModule,
-  MatSelectModule
+  MatSelectModule,
+  MatMenuModule,
+  MatSortModule
  } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -29,6 +32,10 @@ import { QuotesComponent } from './quotes/quotes.component';
 import { QuotesService } from './services/quotes.service';
 import { BooksService } from './services/books.service';
 import { BooksComponent } from './books/books.component';
+import { MainComponent } from './main/main.component';
+
+import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 
 @NgModule({
@@ -40,7 +47,8 @@ import { BooksComponent } from './books/books.component';
     AuthorsComponent,
     GenresComponent,
     QuotesComponent,
-    BooksComponent
+    BooksComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +61,8 @@ import { BooksComponent } from './books/books.component';
     MatTableModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatMenuModule,
+    MatSortModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -64,7 +74,10 @@ import { BooksComponent } from './books/books.component';
     AuthorsService,
     GenresService,
     BooksService,
-    QuotesService
+    QuotesService,
+    CookieService,
+    AuthGuard,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GlobalVariable } from '../global';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
+import { User } from '../declarations';
 
 @Injectable()
 export class AuthService {
 
-    constructor(private http: HttpClient) {
+    constructor(
+      private http: HttpClient,
+      private router: Router,
+      private _cookieService: CookieService) {
 
     }
 
@@ -23,7 +29,15 @@ export class AuthService {
       });
     }
 
-    signout(): void {
+    getMe(): Observable<User> {
+      return this.http.get<User>(GlobalVariable.BASE_API_URL + 'api/users/me', {
+        withCredentials : true
+      });
+    }
 
+    logout(): void {
+      this._cookieService.remove('JSESSIONID');
+      localStorage.removeItem('currentUser');
+      this.router.navigate(['signin']);
     }
 }

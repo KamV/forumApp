@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthorsService } from '../services/authors.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-authors',
@@ -16,10 +17,21 @@ export class AuthorsComponent implements OnInit {
 
   displayedColumns = ['name', 'description', 'birthday', 'updateButton'];
 
+  showAdminMenu = false;
+
   constructor(private formBuilder: FormBuilder,
-    private authorsService: AuthorsService) { }
+    private authorsService: AuthorsService,
+    private authService: AuthService) { }
 
   ngOnInit() {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (currentUser && currentUser.role == 'ADMIN') {
+      this.showAdminMenu = true;
+    } else {
+      this.showAdminMenu = false;
+    }
+
     this.form = this.formBuilder.group({
         name: '',
         description: '',
@@ -41,6 +53,10 @@ export class AuthorsComponent implements OnInit {
 
   updateAuthor(author: any) {
     this.authorsService.updateAuthor(author);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

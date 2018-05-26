@@ -28,7 +28,10 @@ export class SignUpComponent implements OnInit {
 
   signup() {
     this.authService.signUp(this.form.value).subscribe(resp => {
-      this.router.navigate(['admin/authors']);
+      this.authService.getMe().subscribe(resp => {
+        localStorage.setItem('currentUser', JSON.stringify({ isAuth: true, role: resp.roles[0].authority }));
+        this.router.navigate(['main']);
+      });
     });
   }
 

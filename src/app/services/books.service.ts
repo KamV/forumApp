@@ -61,7 +61,7 @@ export class BooksService {
               name: 'Детектив'
             }
           ],
-          date: new Date('2018-05-26'),
+          date: new Date('2017-05-26'),
           description: 'Какое-то описание'
         },
         {
@@ -81,7 +81,7 @@ export class BooksService {
               name: 'Роман'
             }
           ],
-          date: new Date('2018-05-26'),
+          date: new Date('2016-05-26'),
           description: 'Какое-то описание'
         }
       ];

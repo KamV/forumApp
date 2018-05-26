@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material';
+import { MatSort, MatTableDataSource } from '@angular/material';
 import { GenresService } from '../services/genres.service';
 import { AuthorsService } from '../services/authors.service';
 import { BooksService } from '../services/books.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-books',
@@ -14,19 +15,32 @@ export class BooksComponent implements OnInit {
 
   form: FormGroup;
 
-  dataSource;
+  dataSource = new MatTableDataSource(this.booksService.getBooksTest());
 
   authors: any;
   genres: any;
 
   displayedColumns = ['author', 'date', 'description', 'genre', 'name', 'updateButton'];
 
+  showAdminMenu = false;
+
   constructor(private formBuilder: FormBuilder,
     private authorsService: AuthorsService,
     private booksService: BooksService,
-    private genresService: GenresService) { }
+    private genresService: GenresService,
+    private authService: AuthService) { }
+
+  @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (currentUser && currentUser.role == 'ADMIN') {
+      this.showAdminMenu = true;
+    } else {
+      this.showAdminMenu = false;
+    }
+
     this.form = this.formBuilder.group({
         author: '',
         date: '',
@@ -35,7 +49,9 @@ export class BooksComponent implements OnInit {
         name: ''
     });
 
-    this.dataSource = new MatTableDataSource(this.booksService.getBooksTest());
+    // this.dataSource = new MatTableDataSource(this.booksService.getBooksTest());
+
+    this.dataSource.sort = this.sort;
 
     this.authors = this.authorsService.getAllTest();
 
@@ -54,6 +70,10 @@ export class BooksComponent implements OnInit {
 
   updateBook(book: any) {
     this.booksService.updateBook(book);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }
