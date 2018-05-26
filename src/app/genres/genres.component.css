@@ -1,0 +1,23 @@
+.add-author-form {
+
+}
+
+mat-card {
+  margin: 1%;
+  display: flex;
+  justify-content: center;
+}
+
+mat-table {
+  margin: 1%;
+}
+
+th, td {
+  margin: auto;
+  text-align: center;
+  width: 200px;
+}
+
+.date-input {
+  text-align: right;
+}

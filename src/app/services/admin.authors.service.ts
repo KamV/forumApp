@@ -21,16 +21,19 @@ export class AdminAuthorsService {
     getAllTest() {
       return [
         {
+          id: 0,
           name: 'Пушкин',
           description: 'Писатель',
           birthday: new Date('12.12.1212')
         },
         {
+          id: 1,
           name: 'Лермонотов',
           description: 'Писатель',
           birthday: new Date('12.12.1212')
         },
         {
+          id: 2,
           name: 'Ремарк',
           description: 'Писатель',
           birthday: new Date('12.12.1212')

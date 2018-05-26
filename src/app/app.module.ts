@@ -23,6 +23,7 @@ import { AuthService } from './services/auth.service';
 import { AuthorsComponent } from './authors/authors.component';
 import { AdminAuthorsService } from './services/admin.authors.service';
 import { GenresComponent } from './genres/genres.component';
+import { AdminGenresService } from './services/admin.genres.service';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { GenresComponent } from './genres/genres.component';
   ],
   providers: [
     AuthService,
-    AdminAuthorsService
+    AdminAuthorsService,
+    AdminGenresService
   ],
   bootstrap: [AppComponent]
 })
