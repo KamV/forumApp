@@ -8,7 +8,8 @@ import { MatButtonModule,
   MatInputModule,
   MatToolbarModule,
   MatTableModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSelectModule
  } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -21,9 +22,12 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ErrorComponent } from './error/error.component';
 import { AuthService } from './services/auth.service';
 import { AuthorsComponent } from './authors/authors.component';
-import { AdminAuthorsService } from './services/admin.authors.service';
+import { AuthorsService } from './services/authors.service';
 import { GenresComponent } from './genres/genres.component';
-import { AdminGenresService } from './services/admin.genres.service';
+import { GenresService } from './services/genres.service';
+import { QuotesComponent } from './quotes/quotes.component';
+import { QuotesService } from './services/quotes.service';
+import { BooksService } from './services/books.service';
 
 
 @NgModule({
@@ -33,7 +37,8 @@ import { AdminGenresService } from './services/admin.genres.service';
     SignUpComponent,
     ErrorComponent,
     AuthorsComponent,
-    GenresComponent
+    GenresComponent,
+    QuotesComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,7 @@ import { AdminGenresService } from './services/admin.genres.service';
     MatToolbarModule,
     MatTableModule,
     MatCheckboxModule,
+    MatSelectModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -53,8 +59,10 @@ import { AdminGenresService } from './services/admin.genres.service';
   ],
   providers: [
     AuthService,
-    AdminAuthorsService,
-    AdminGenresService
+    AuthorsService,
+    GenresService,
+    BooksService,
+    QuotesService
   ],
   bootstrap: [AppComponent]
 })

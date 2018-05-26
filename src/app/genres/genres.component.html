@@ -1,7 +1,7 @@
 <mat-toolbar color="primary"></mat-toolbar>
 <mat-card>
   <mat-card-content>
-    <form class="add-author-form" [formGroup]="form" (submit)="addGenre()">
+    <form [formGroup]="form" (submit)="addGenre()">
       <mat-form-field class="">
         <input matInput placeholder="Название жанра" formControlName="name"/>
       </mat-form-field>

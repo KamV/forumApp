@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminGenresService } from '../services/admin.genres.service';
+import { GenresService } from '../services/genres.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
 
@@ -17,32 +17,32 @@ export class GenresComponent implements OnInit {
   displayedColumns = ['name', 'updateButton', 'deleteButton'];
 
   constructor(private formBuilder: FormBuilder,
-    private adminGenresService: AdminGenresService) { }
+    private genresService: GenresService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
         name: ''
     });
 
-    this.adminGenresService.getAll().subscribe(resp => {
+    this.genresService.getAll().subscribe(resp => {
       console.log('resp', resp);
     });
 
-    this.dataSource = new MatTableDataSource(this.adminGenresService.getAllTest());
+    this.dataSource = new MatTableDataSource(this.genresService.getAllTest());
   }
 
   addGenre() {
-    this.adminGenresService.addGenre(this.form.value).subscribe(resp => {
+    this.genresService.addGenre(this.form.value).subscribe(resp => {
       console.log('resp', resp);
     });
   }
 
   updateGenre(genre: any) {
-    this.adminGenresService.updateGenre(genre);
+    this.genresService.updateGenre(genre);
   }
 
   deleteGenre(genre: any) {
-    this.adminGenresService.deleteGenre(genre);
+    this.genresService.deleteGenre(genre);
   }
 
 }

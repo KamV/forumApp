@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminAuthorsService } from '../services/admin.authors.service';
+import { AuthorsService } from '../services/authors.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
 
@@ -17,7 +17,7 @@ export class AuthorsComponent implements OnInit {
   displayedColumns = ['name', 'description', 'birthday', 'updateButton'];
 
   constructor(private formBuilder: FormBuilder,
-    private adminAuthorsService: AdminAuthorsService) { }
+    private authorsService: AuthorsService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -26,21 +26,21 @@ export class AuthorsComponent implements OnInit {
         birthday: ''
     });
 
-    this.adminAuthorsService.getAll().subscribe(resp => {
+    this.authorsService.getAll().subscribe(resp => {
       console.log('resp', resp);
     });
 
-    this.dataSource = new MatTableDataSource(this.adminAuthorsService.getAllTest());
+    this.dataSource = new MatTableDataSource(this.authorsService.getAllTest());
   }
 
   addAuthor() {
-    this.adminAuthorsService.addAuthor(this.form.value).subscribe(resp => {
+    this.authorsService.addAuthor(this.form.value).subscribe(resp => {
       console.log('resp', resp);
     });
   }
 
   updateAuthor(author: any) {
-    this.adminAuthorsService.updateAuthor(author);
+    this.authorsService.updateAuthor(author);
   }
 
 }

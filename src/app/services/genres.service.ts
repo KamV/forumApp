@@ -4,7 +4,7 @@ import { GlobalVariable } from '../global';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 
 @Injectable()
-export class AdminGenresService {
+export class GenresService {
 
     constructor(private http: HttpClient) {
 

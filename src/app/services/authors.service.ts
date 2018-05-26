@@ -4,7 +4,7 @@ import { GlobalVariable } from '../global';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 
 @Injectable()
-export class AdminAuthorsService {
+export class AuthorsService {
 
     constructor(private http: HttpClient) {
 
@@ -35,6 +35,18 @@ export class AdminAuthorsService {
         {
           id: 2,
           name: 'Ремарк',
+          description: 'Писатель',
+          birthday: new Date('12.12.1212')
+        },
+        {
+          id: 3,
+          name: 'Толстой',
+          description: 'Писатель',
+          birthday: new Date('12.12.1212')
+        },
+        {
+          id: 4,
+          name: 'Шолохов',
           description: 'Писатель',
           birthday: new Date('12.12.1212')
         }
