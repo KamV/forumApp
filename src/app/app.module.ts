@@ -1,8 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule, MatCardModule, MatInputModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule,
+  MatCardModule,
+  MatInputModule,
+  MatToolbarModule,
+  MatTableModule,
+  MatCheckboxModule
+ } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { routes } from './app-routing.module';
@@ -15,6 +22,7 @@ import { ErrorComponent } from './error/error.component';
 import { AuthService } from './services/auth.service';
 import { AuthorsComponent } from './authors/authors.component';
 import { AdminAuthorsService } from './services/admin.authors.service';
+import { GenresComponent } from './genres/genres.component';
 
 
 @NgModule({
@@ -23,7 +31,8 @@ import { AdminAuthorsService } from './services/admin.authors.service';
     SignInComponent,
     SignUpComponent,
     ErrorComponent,
-    AuthorsComponent
+    AuthorsComponent,
+    GenresComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +42,12 @@ import { AdminAuthorsService } from './services/admin.authors.service';
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
+    MatTableModule,
+    MatCheckboxModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(routes),
   ],
   providers: [

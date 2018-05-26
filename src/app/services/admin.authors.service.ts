@@ -16,6 +16,38 @@ export class AdminAuthorsService {
       });
 
       return this.http.request(req);
-      // return this.http.post<any>(GlobalVariable.BASE_API_URL + 'api/authors', { withCredentials : true });
+    }
+
+    getAllTest() {
+      return [
+        {
+          name: 'Пушкин',
+          description: 'Писатель',
+          birthday: new Date('12.12.1212')
+        },
+        {
+          name: 'Лермонотов',
+          description: 'Писатель',
+          birthday: new Date('12.12.1212')
+        },
+        {
+          name: 'Ремарк',
+          description: 'Писатель',
+          birthday: new Date('12.12.1212')
+        }
+      ];
+    }
+
+    addAuthor(author: any): Observable<any> {
+      console.log(author);
+      const req = new HttpRequest('POST', GlobalVariable.BASE_API_URL + 'api/authors', author, {
+        withCredentials : true
+      });
+
+      return this.http.request(req);
+    }
+
+    updateAuthor(author: any) {
+      console.log(author);
     }
 }
