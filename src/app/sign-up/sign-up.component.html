@@ -7,19 +7,19 @@
   <mat-card-content>
     <form class="signup-form" [formGroup]="form" (submit)="signup()">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Логин" formControlName="login"/>
+        <input matInput placeholder="Логин" formControlName="login" required/>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput type="password" placeholder="Пароль" formControlName="password"/>
+        <input matInput type="password" placeholder="Пароль" formControlName="password" required/>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="E-mail" formControlName="email"/>
+        <input matInput placeholder="E-mail" formControlName="email" required/>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Никнейм" formControlName="nickname"/>
+        <input matInput placeholder="Никнейм" formControlName="nickname" required/>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput type="date" placeholder="Дата рождения" formControlName="birthDate"/>
+        <input matInput type="date" placeholder="Дата рождения" formControlName="birthDate" required/>
       </mat-form-field>
       <button type="submit" mat-raised-button color="primary">Зарегистрироваться</button>
     </form>

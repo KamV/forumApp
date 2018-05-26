@@ -3,13 +3,13 @@
   <mat-card-content>
     <form class="add-author-form" [formGroup]="form" (submit)="addAuthor()">
       <mat-form-field class="">
-        <input matInput placeholder="Имя автора" formControlName="name"/>
+        <input matInput placeholder="Имя автора" formControlName="name" required/>
       </mat-form-field>
       <mat-form-field class="">
-        <input matInput placeholder="Описание" formControlName="description"/>
+        <input matInput placeholder="Описание" formControlName="description" required/>
       </mat-form-field>
       <mat-form-field class="">
-        <input matInput type="date" placeholder="Дата рождения" formControlName="birthday"/>
+        <input matInput type="date" placeholder="Дата рождения" formControlName="birthday" required/>
       </mat-form-field>
       <button type="" mat-raised-button color="primary">Добавить</button>
     </form>
@@ -20,21 +20,21 @@
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Имя </th>
     <td mat-cell *matCellDef="let element">
-      <input matInput type="text" placeholder="Имя автора" [(ngModel)]="element.name"/>
+      <input matInput type="text" placeholder="Имя автора" [(ngModel)]="element.name" required/>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef> Описание </th>
     <td mat-cell *matCellDef="let element">
-      <input matInput type="text" placeholder="Описание" [(ngModel)]="element.description"/>
+      <input matInput type="text" placeholder="Описание" [(ngModel)]="element.description" required/>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="birthday">
     <th mat-header-cell *matHeaderCellDef> Дата рождения </th>
     <td mat-cell *matCellDef="let element" >
-      <input class="date-input" matInput type="date" [ngModel] ="element.birthday | date:'yyyy-MM-dd'" (ngModelChange)="element.birthday = $event">
+      <input class="date-input" matInput type="date" [ngModel] ="element.birthday | date:'yyyy-MM-dd'" (ngModelChange)="element.birthday = $event" required>
     </td>
   </ng-container>
 

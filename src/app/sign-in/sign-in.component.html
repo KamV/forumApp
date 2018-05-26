@@ -7,10 +7,10 @@
   <mat-card-content>
     <form class="login-form" [formGroup]="form" (submit)="login()">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Логин" formControlName="login"/>
+        <input matInput placeholder="Логин" formControlName="login" required/>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput type="password" placeholder="Пароль" formControlName="password"/>
+        <input matInput type="password" placeholder="Пароль" formControlName="password" required/>
       </mat-form-field>
       <button type="submit" mat-raised-button color="primary">Войти</button>
     </form>

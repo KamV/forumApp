@@ -55,6 +55,10 @@ export class BooksService {
             {
               id: 1,
               name: 'Роман'
+            },
+            {
+              id: 2,
+              name: 'Детектив'
             }
           ],
           date: new Date('2018-05-26'),
@@ -82,17 +86,17 @@ export class BooksService {
         }
       ];
     }
-    //
-    // addAuthor(author: any): Observable<any> {
-    //   console.log(author);
-    //   const req = new HttpRequest('POST', GlobalVariable.BASE_API_URL + 'api/authors', author, {
-    //     withCredentials : true
-    //   });
-    //
-    //   return this.http.request(req);
-    // }
-    //
-    // updateAuthor(author: any) {
-    //   console.log(author);
-    // }
+
+    addBook(book: any): Observable<any> {
+      console.log(book);
+      const req = new HttpRequest('POST', GlobalVariable.BASE_API_URL + 'api/books', book, {
+        withCredentials : true
+      });
+
+      return this.http.request(req);
+    }
+
+    updateBook(book: any) {
+      console.log(book);
+    }
 }

@@ -28,6 +28,7 @@ import { GenresService } from './services/genres.service';
 import { QuotesComponent } from './quotes/quotes.component';
 import { QuotesService } from './services/quotes.service';
 import { BooksService } from './services/books.service';
+import { BooksComponent } from './books/books.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { BooksService } from './services/books.service';
     ErrorComponent,
     AuthorsComponent,
     GenresComponent,
-    QuotesComponent
+    QuotesComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
