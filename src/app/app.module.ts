@@ -12,7 +12,8 @@ import { MatButtonModule,
   MatCheckboxModule,
   MatSelectModule,
   MatMenuModule,
-  MatSortModule
+  MatSortModule,
+  MatDialogModule
  } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -24,7 +25,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ErrorComponent } from './error/error.component';
 import { AuthService } from './services/auth.service';
-import { AuthorsComponent } from './administration/authors/authors.component';
+import { AdminAuthorsComponent } from './administration/authors/authors.component';
 import { AuthorsService } from './services/authors.service';
 import { GenresComponent } from './administration/genres/genres.component';
 import { GenresService } from './services/genres.service';
@@ -36,6 +37,8 @@ import { MainComponent } from './main/main.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { AuthorsComponent } from './authors/authors.component';
+import { AboutAuthorDialogComponent } from './authors/about-author-dialog/about-author-dialog.component';
 
 
 @NgModule({
@@ -44,11 +47,13 @@ import { AdminGuard } from './guards/admin.guard';
     SignInComponent,
     SignUpComponent,
     ErrorComponent,
-    AuthorsComponent,
+    AdminAuthorsComponent,
     GenresComponent,
     QuotesComponent,
     BooksComponent,
-    MainComponent
+    MainComponent,
+    AuthorsComponent,
+    AboutAuthorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -63,11 +68,15 @@ import { AdminGuard } from './guards/admin.guard';
     MatSelectModule,
     MatMenuModule,
     MatSortModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(routes),
+  ],
+  entryComponents: [
+    AboutAuthorDialogComponent
   ],
   providers: [
     AuthService,

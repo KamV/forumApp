@@ -10,7 +10,7 @@ import { AuthorItem } from '../../declarations';
   templateUrl: './authors.component.html',
   styleUrls: ['./authors.component.css']
 })
-export class AuthorsComponent implements OnInit {
+export class AdminAuthorsComponent implements OnInit {
 
   form: FormGroup;
 
