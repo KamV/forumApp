@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <button mat-button routerLink="/main">Главная</button>
   <span class="flex-row"></span>
-  <button mat-button [hidden]="!showAdminMenu" [matMenuTriggerFor]="menu">Администрирование</button>
+  <button mat-button *ngIf="showAdminMenu" [matMenuTriggerFor]="menu">Администрирование</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/admin/authors">Авторы</button>
       <button mat-menu-item routerLink="/admin/books">Книги</button>

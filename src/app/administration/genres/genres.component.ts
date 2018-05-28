@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GenresService } from '../services/genres.service';
+import { GenresService } from '../../services/genres.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
+import { Genre } from '../../declarations';
 
 @Component({
   selector: 'app-genres',
@@ -18,6 +19,8 @@ export class GenresComponent implements OnInit {
   displayedColumns = ['name', 'updateButton', 'deleteButton'];
 
   showAdminMenu = false;
+
+  genres: Genre[];
 
   constructor(private formBuilder: FormBuilder,
     private genresService: GenresService,
@@ -37,10 +40,9 @@ export class GenresComponent implements OnInit {
     });
 
     this.genresService.getAll().subscribe(resp => {
-      console.log('resp', resp);
+      this.genres = resp;
+      this.dataSource = new MatTableDataSource(this.genres);
     });
-
-    this.dataSource = new MatTableDataSource(this.genresService.getAllTest());
   }
 
   addGenre() {

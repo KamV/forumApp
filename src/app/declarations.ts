@@ -12,3 +12,18 @@ export interface Role {
   id: number,
   authority: string
 }
+
+export interface Author {
+  authors: AuthorItem[];
+}
+
+export interface AuthorItem {
+  id: number,
+  name: string,
+  birthday: string;
+}
+
+export interface Genre {
+  id: number,
+  name: string,
+}

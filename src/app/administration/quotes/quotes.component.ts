@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorsService } from '../services/authors.service';
-import { BooksService } from '../services/books.service';
-import { QuotesService } from '../services/quotes.service';
+import { AuthorsService } from '../../services/authors.service';
+import { BooksService } from '../../services/books.service';
+import { QuotesService } from '../../services/quotes.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-quotes',
@@ -49,7 +49,9 @@ export class QuotesComponent implements OnInit {
 
     this.books = this.booksService.getBooksTest();
 
-    this.authors = this.authorsService.getAllTest();
+    this.authorsService.getAll().subscribe(resp => {
+      this.authors = resp.authors;
+    });
   }
 
   addQuote() {

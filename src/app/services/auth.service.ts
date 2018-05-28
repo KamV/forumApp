@@ -23,8 +23,8 @@ export class AuthService {
       });
     }
 
-    signUp(user: any): Observable<any> {
-      return this.http.post<any>(GlobalVariable.BASE_API_URL + 'api/sign-up', user, {
+    signUp(user: any): Observable<User> {
+      return this.http.post<User>(GlobalVariable.BASE_API_URL + 'api/sign-up', user, {
         withCredentials : true
       });
     }
@@ -37,7 +37,8 @@ export class AuthService {
 
     logout(): void {
       this._cookieService.remove('JSESSIONID');
-      localStorage.removeItem('currentUser');
+      localStorage.clear();
+      console.log(JSON.parse(localStorage.getItem('currentUser')));
       this.router.navigate(['signin']);
     }
 }

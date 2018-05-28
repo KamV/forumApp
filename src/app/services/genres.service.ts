@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GlobalVariable } from '../global';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { Genre } from '../declarations';
 
 @Injectable()
 export class GenresService {
@@ -10,12 +11,10 @@ export class GenresService {
 
     }
 
-    getAll(): Observable<any> {
-      const req = new HttpRequest('GET', GlobalVariable.BASE_API_URL + 'api/genres', {
+    getAll(): Observable<Genre[]> {
+      return this.http.get<Genre[]>(GlobalVariable.BASE_API_URL + 'api/genres', {
         withCredentials : true
       });
-
-      return this.http.request(req);
     }
 
     getAllTest() {

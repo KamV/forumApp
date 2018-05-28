@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSort, MatTableDataSource } from '@angular/material';
-import { GenresService } from '../services/genres.service';
-import { AuthorsService } from '../services/authors.service';
-import { BooksService } from '../services/books.service';
-import { AuthService } from '../services/auth.service';
+import { GenresService } from '../../services/genres.service';
+import { AuthorsService } from '../../services/authors.service';
+import { BooksService } from '../../services/books.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-books',
@@ -53,9 +53,13 @@ export class BooksComponent implements OnInit {
 
     this.dataSource.sort = this.sort;
 
-    this.authors = this.authorsService.getAllTest();
+    this.authorsService.getAll().subscribe(resp => {
+      this.authors = resp.authors;
+    });
 
-    this.genres = this.genresService.getAllTest();
+    this.genresService.getAll().subscribe(resp => {
+      this.genres = resp;
+    });
   }
 
   compareById(item1, item2) {

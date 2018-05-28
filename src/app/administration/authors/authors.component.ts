@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorsService } from '../services/authors.service';
+import { AuthorsService } from '../../services/authors.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
+import { AuthorItem } from '../../declarations';
 
 @Component({
   selector: 'app-authors',
@@ -18,6 +19,8 @@ export class AuthorsComponent implements OnInit {
   displayedColumns = ['name', 'description', 'birthday', 'updateButton'];
 
   showAdminMenu = false;
+
+  authors: AuthorItem[];
 
   constructor(private formBuilder: FormBuilder,
     private authorsService: AuthorsService,
@@ -39,20 +42,23 @@ export class AuthorsComponent implements OnInit {
     });
 
     this.authorsService.getAll().subscribe(resp => {
-      console.log('resp', resp);
+      this.authors = resp.authors;
+      this.dataSource = new MatTableDataSource(this.authors);
     });
-
-    this.dataSource = new MatTableDataSource(this.authorsService.getAllTest());
   }
 
   addAuthor() {
     this.authorsService.addAuthor(this.form.value).subscribe(resp => {
       console.log('resp', resp);
-    });
+    },
+    err => { console.log(err); });
   }
 
   updateAuthor(author: any) {
-    this.authorsService.updateAuthor(author);
+    this.authorsService.updateAuthor(author).subscribe(resp => {
+      console.log('resp', resp);
+    });
+    // this.authorsService.updateAuthor(author);
   }
 
   logout() {

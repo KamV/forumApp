@@ -2,10 +2,10 @@ import { Routes } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ErrorComponent } from './error/error.component';
-import { AuthorsComponent } from './authors/authors.component';
-import { GenresComponent } from './genres/genres.component';
-import { QuotesComponent } from './quotes/quotes.component';
-import { BooksComponent } from './books/books.component';
+import { AuthorsComponent } from './administration/authors/authors.component';
+import { GenresComponent } from './administration/genres/genres.component';
+import { QuotesComponent } from './administration/quotes/quotes.component';
+import { BooksComponent } from './administration/books/books.component';
 import { MainComponent } from './main/main.component';
 
 import { AuthGuard } from './guards/auth.guard';

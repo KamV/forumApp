@@ -70,7 +70,7 @@ export class BooksService {
           name: 'Сказка о царе Салтане',
           viewedCount: 1,
           author: {
-            id: 0,
+            id: 1,
             name: 'Пушкин',
             description: 'Писатель',
             birthday: new Date('12.12.1212')

@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GlobalVariable } from '../global';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { Author, AuthorItem } from '../declarations';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials : true
+};
 
 @Injectable()
 export class AuthorsService {
@@ -10,59 +16,35 @@ export class AuthorsService {
 
     }
 
-    getAll(): Observable<any> {
-      const req = new HttpRequest('GET', GlobalVariable.BASE_API_URL + 'api/authors', {
+    getAll(): Observable<Author> {
+      return this.http.get<Author>(GlobalVariable.BASE_API_URL + 'api/authors', {
         withCredentials : true
       });
-
-      return this.http.request(req);
     }
 
-    getAllTest() {
-      return [
-        {
-          id: 0,
-          name: 'Пушкин',
-          description: 'Писатель',
-          birthday: new Date('12.12.1212')
-        },
-        {
-          id: 1,
-          name: 'Лермонотов',
-          description: 'Писатель',
-          birthday: new Date('12.12.1212')
-        },
-        {
-          id: 2,
-          name: 'Ремарк',
-          description: 'Писатель',
-          birthday: new Date('12.12.1212')
-        },
-        {
-          id: 3,
-          name: 'Толстой',
-          description: 'Писатель',
-          birthday: new Date('12.12.1212')
-        },
-        {
-          id: 4,
-          name: 'Шолохов',
-          description: 'Писатель',
-          birthday: new Date('12.12.1212')
-        }
-      ];
+    addAuthor(author: AuthorItem): Observable<AuthorItem> {
+      // console.log(author);
+      // const body = JSON.stringify({birthday: '2018-05-27', description: 'Писатель', name: 'Васильев'});
+      // let item = {
+      //   birthday: "2018-05-27",
+      //   description: "Писатель",
+      //   name: "Васильев"
+      // };
+      // const req = new HttpRequest('POST', GlobalVariable.BASE_API_URL + 'api/authors', body, httpOptions);
+      //
+      // return this.http.request(req);
+
+      return this.http.post<AuthorItem>(GlobalVariable.BASE_API_URL + 'api/authors', author, httpOptions);
     }
 
-    addAuthor(author: any): Observable<any> {
-      console.log(author);
-      const req = new HttpRequest('POST', GlobalVariable.BASE_API_URL + 'api/authors', author, {
+    updateAuthor(author: AuthorItem): Observable<AuthorItem> {
+      // const req = new HttpRequest('PUT', GlobalVariable.BASE_API_URL + 'api/authors/4', JSON.stringify(author), {
+      //   withCredentials : true
+      // });
+      //
+      // return this.http.request(req);
+      return this.http.put<AuthorItem>(GlobalVariable.BASE_API_URL + 'api/authors/4', author, {
         withCredentials : true
       });
-
-      return this.http.request(req);
-    }
-
-    updateAuthor(author: any) {
-      console.log(author);
     }
 }

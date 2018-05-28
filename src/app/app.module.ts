@@ -24,14 +24,14 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ErrorComponent } from './error/error.component';
 import { AuthService } from './services/auth.service';
-import { AuthorsComponent } from './authors/authors.component';
+import { AuthorsComponent } from './administration/authors/authors.component';
 import { AuthorsService } from './services/authors.service';
-import { GenresComponent } from './genres/genres.component';
+import { GenresComponent } from './administration/genres/genres.component';
 import { GenresService } from './services/genres.service';
-import { QuotesComponent } from './quotes/quotes.component';
+import { QuotesComponent } from './administration/quotes/quotes.component';
 import { QuotesService } from './services/quotes.service';
 import { BooksService } from './services/books.service';
-import { BooksComponent } from './books/books.component';
+import { BooksComponent } from './administration/books/books.component';
 import { MainComponent } from './main/main.component';
 
 import { AuthGuard } from './guards/auth.guard';
