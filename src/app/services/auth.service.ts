@@ -38,7 +38,6 @@ export class AuthService {
     logout(): void {
       this._cookieService.remove('JSESSIONID');
       localStorage.clear();
-      console.log(JSON.parse(localStorage.getItem('currentUser')));
       this.router.navigate(['signin']);
     }
 }

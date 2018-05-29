@@ -39,6 +39,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthorsComponent } from './authors/authors.component';
 import { AboutAuthorDialogComponent } from './authors/about-author-dialog/about-author-dialog.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { AboutAuthorDialogComponent } from './authors/about-author-dialog/about-
     BooksComponent,
     MainComponent,
     AuthorsComponent,
-    AboutAuthorDialogComponent
+    AboutAuthorDialogComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,

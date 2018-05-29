@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GlobalVariable } from '../global';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { Quote } from '../declarations';
 
 @Injectable()
 export class QuotesService {
@@ -99,6 +100,18 @@ export class QuotesService {
 
     updateQuote(quote: any) {
       console.log(quote);
+    }
+
+    getFavouritesQuotes(): Observable<Quote[]> {
+      return this.http.get<Quote[]>(GlobalVariable.BASE_API_URL + 'api/favourites/quotes', {
+        withCredentials : true
+      });
+    }
+
+    addOrDeleteFromFavouritesQuotes(item: any):Observable<any> {
+      return this.http.put<any>(GlobalVariable.BASE_API_URL + 'api/favourites/quotes', item, {
+        withCredentials : true
+      });
     }
 
     deleteQuote(quote: any) {

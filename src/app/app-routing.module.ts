@@ -8,6 +8,7 @@ import { QuotesComponent } from './administration/quotes/quotes.component';
 import { BooksComponent } from './administration/books/books.component';
 import { MainComponent } from './main/main.component';
 import { AuthorsComponent } from './authors/authors.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'main', component: MainComponent, canActivate: [AuthGuard] },
   { path: 'authors', component: AuthorsComponent, canActivate: [AuthGuard] },
+  { path: 'favourites', component: FavouritesComponent, canActivate: [AuthGuard] },
   { path: 'admin/authors', component: AdminAuthorsComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'admin/genres', component: GenresComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'admin/quotes', component: QuotesComponent, canActivate: [AuthGuard, AdminGuard] },

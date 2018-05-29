@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GlobalVariable } from '../global';
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpParams } from '@angular/common/http';
 import { Author, AuthorItem } from '../declarations';
 
 const httpOptions = {
@@ -34,7 +34,12 @@ export class AuthorsService {
       //
       // return this.http.request(req);
 
-      return this.http.post<AuthorItem>(GlobalVariable.BASE_API_URL + 'api/authors', author, httpOptions);
+      const body = new HttpParams().set('birthday', '2018-05-27');
+
+      return this.http.post<AuthorItem>(GlobalVariable.BASE_API_URL + 'api/authors', author, {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        withCredentials : true
+      });
     }
 
     updateAuthor(author: AuthorItem): Observable<AuthorItem> {

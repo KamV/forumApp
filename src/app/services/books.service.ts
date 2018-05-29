@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GlobalVariable } from '../global';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { Book } from '../declarations';
 
 @Injectable()
 export class BooksService {
@@ -98,5 +99,17 @@ export class BooksService {
 
     updateBook(book: any) {
       console.log(book);
+    }
+
+    getFavouritesBooks(): Observable<Book[]> {
+      return this.http.get<Book[]>(GlobalVariable.BASE_API_URL + 'api/favourites/books', {
+        withCredentials : true
+      });
+    }
+
+    addOrDeleteFromFavouritesBooks(item: any):Observable<any> {
+      return this.http.put<any>(GlobalVariable.BASE_API_URL + 'api/favourites/books', item, {
+        withCredentials : true
+      });
     }
 }

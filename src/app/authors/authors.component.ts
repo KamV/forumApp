@@ -48,7 +48,7 @@ export class AuthorsComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.authors);
     });
 
-    this.dataSource.sort = this.sort;
+    // this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {

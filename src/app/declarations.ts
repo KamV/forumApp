@@ -9,8 +9,8 @@ export interface User {
 }
 
 export interface Role {
-  id: number,
-  authority: string
+  id: number;
+  authority: string;
 }
 
 export interface Author {
@@ -18,12 +18,30 @@ export interface Author {
 }
 
 export interface AuthorItem {
-  id: number,
-  name: string,
+  id: number;
+  name: string;
   birthday: string;
 }
 
 export interface Genre {
-  id: number,
-  name: string,
+  id: number;
+  name: string;
+}
+
+export interface Book {
+  id: number;
+  name: string;
+  author: AuthorItem;
+  date: string;
+  description: string;
+  genres: Genre[];
+  isbn: string;
+  viewedCount: number;
+}
+
+export interface Quote {
+  id: number;
+  author: AuthorItem;
+  body: string;
+  book: Book;
 }
