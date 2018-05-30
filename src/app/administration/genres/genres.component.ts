@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { GenresService } from '../../services/genres.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
@@ -24,7 +25,8 @@ export class GenresComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private genresService: GenresService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -42,6 +44,9 @@ export class GenresComponent implements OnInit {
     this.genresService.getAll().subscribe(resp => {
       this.genres = resp;
       this.dataSource = new MatTableDataSource(this.genres);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
@@ -51,12 +56,18 @@ export class GenresComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.genres);
 
       this.form.reset();
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
   updateGenre(genre: any) {
     this.genresService.updateGenre(genre).subscribe(resp => {
       console.log(genre);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
@@ -64,6 +75,9 @@ export class GenresComponent implements OnInit {
     this.genresService.deleteGenre(genre).subscribe(resp => {
       this.genres.splice(this.genres.indexOf(resp), 1);
       this.dataSource = new MatTableDataSource(this.genres);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
 
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from "@angular/router";
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { GenresService } from '../../services/genres.service';
@@ -30,7 +31,8 @@ export class AdminBooksComponent implements OnInit {
     private authorsService: AuthorsService,
     private booksService: BooksService,
     private genresService: GenresService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -54,10 +56,16 @@ export class AdminBooksComponent implements OnInit {
 
     this.authorsService.getAll().subscribe(resp => {
       this.authors = resp.authors;
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
 
     this.genresService.getAll().subscribe(resp => {
       this.genres = resp;
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
 
     this.booksService.getAll().subscribe(resp => {
@@ -65,6 +73,9 @@ export class AdminBooksComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.books);
 
       this.dataSource.sort = this.sort;
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
@@ -78,12 +89,18 @@ export class AdminBooksComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.books);
 
       this.form.reset();
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
   updateBook(book: Book) {
     this.booksService.updateBook(book).subscribe(resp => {
       console.log(book);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 

@@ -12,7 +12,9 @@ export class BooksService {
     }
 
     getAll(): Observable<Books> {
-      return this.http.get<Books>(GlobalVariable.BASE_API_URL + 'api/books?sortBy=id', {
+      let count = 999999;
+      let page = 1;
+      return this.http.get<Books>(GlobalVariable.BASE_API_URL + 'api/books?sortBy=id&count=' + count + '&page=' + page, {
         withCredentials : true
       });
     }
@@ -36,7 +38,7 @@ export class BooksService {
     }
 
     addOrDeleteFromFavouritesBooks(item: any):Observable<any> {
-      return this.http.put<any>(GlobalVariable.BASE_API_URL + 'api/favourites/books', item, {
+      return this.http.put<any>(GlobalVariable.BASE_API_URL + 'api/favourites/books?bookId=' + item.id + '&add=' + item.add, {}, {
         withCredentials : true
       });
     }

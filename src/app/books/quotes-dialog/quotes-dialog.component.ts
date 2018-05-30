@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from "@angular/router";
 import { MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { QuotesService } from '../../services/quotes.service';
 import { Book, Quote } from '../../declarations';
@@ -10,7 +11,7 @@ import { Book, Quote } from '../../declarations';
 })
 export class QuotesDialogComponent implements OnInit {
 
-  dataSource;
+  dataSource: any;
 
   displayedColumns = ['author', 'book', 'body', 'addOrDeleteFromFavouritesQuotesButton'];
 
@@ -19,28 +20,45 @@ export class QuotesDialogComponent implements OnInit {
   quotes: Quote[];
 
   constructor(private quotesService: QuotesService,
+    private router: Router,
     public dialogRef: MatDialogRef<QuotesDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    // this.book = data.book;
-    //
-    // this.quotes = getBookQuotesTest();
-    // this.dataSource = new MatTableDataSource(this.quotes);
-    // this.quotesService.getBookQuotes(book.id).subscribe(resp => {
-    //   this.quotes = resp;
-    //   this.dataSource = new MatTableDataSource(this.quotes);
-    // });
+      this.book = data.book;
+
+      this.quotesService.getBookQuotes(this.book).subscribe(resp => {
+        this.quotes = resp;
+        this.dataSource = new MatTableDataSource(this.quotes);
+      },
+      error => {
+            this.router.navigate(['signin']);
+      });
 
   }
 
   ngOnInit() {
   }
 
-  addOrDeleteFromFavouritesQuotes() {
-
-  }
-
   onButtonClick() {
     this.dialogRef.close();
+  }
+
+  showAction(quote: Quote) {
+    return !quote.isFavourite ? 'Добавить в избранное' : 'Убрать из избранного';
+  }
+
+  addOrDeleteFromFavouritesQuotes(quote: Quote) {
+    let item = {
+      id: quote.id,
+      add: !quote.isFavourite
+    };
+
+    this.quotesService.addOrDeleteFromFavouritesQuotes(item).subscribe(resp => {
+      this.quotes[this.quotes.indexOf(quote)].isFavourite = !quote.isFavourite;
+      this.dataSource = new MatTableDataSource(this.quotes);
+    },
+    error => {
+          this.router.navigate(['signin']);
+    });
   }
 
 }

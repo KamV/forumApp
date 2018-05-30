@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -10,7 +11,8 @@ export class MainComponent implements OnInit {
 
   showAdminMenu = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));

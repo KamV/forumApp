@@ -37,6 +37,7 @@ export interface Book {
   genres: Genre[];
   isbn: string;
   viewedCount: number;
+  isFavourite: boolean;
 }
 
 export interface Books {
@@ -48,4 +49,5 @@ export interface Quote {
   author: AuthorItem;
   body: string;
   book: Book;
+  isFavourite: boolean;
 }

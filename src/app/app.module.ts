@@ -82,7 +82,8 @@ import { QuotesDialogComponent } from './books/quotes-dialog/quotes-dialog.compo
     RouterModule.forRoot(routes),
   ],
   entryComponents: [
-    AboutAuthorDialogComponent
+    AboutAuthorDialogComponent,
+    QuotesDialogComponent
   ],
   providers: [
     AuthService,

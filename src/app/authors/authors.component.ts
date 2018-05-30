@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from "@angular/router";
 import { AuthorsService } from '../services/authors.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
@@ -28,7 +29,8 @@ export class AuthorsComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private authorsService: AuthorsService,
     private authService: AuthService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -46,9 +48,11 @@ export class AuthorsComponent implements OnInit {
     this.authorsService.getAll().subscribe(resp => {
       this.authors = resp.authors;
       this.dataSource = new MatTableDataSource(this.authors);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
 
-    // this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { AuthorsService } from '../../services/authors.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
@@ -24,7 +25,8 @@ export class AdminAuthorsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private authorsService: AuthorsService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -44,6 +46,9 @@ export class AdminAuthorsComponent implements OnInit {
     this.authorsService.getAll().subscribe(resp => {
       this.authors = resp.authors;
       this.dataSource = new MatTableDataSource(this.authors);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
@@ -54,14 +59,19 @@ export class AdminAuthorsComponent implements OnInit {
 
       this.form.reset();
     },
-    err => { console.log(err); });
+    error => {
+          this.router.navigate(['signin']);
+    });
   }
 
   updateAuthor(author: any) {
     this.authorsService.updateAuthor(author).subscribe(resp => {
       console.log('resp', resp);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
-    
+
   }
 
   logout() {

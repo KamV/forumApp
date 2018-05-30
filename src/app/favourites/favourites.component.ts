@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { BooksService } from '../services/books.service';
 import { AuthService } from '../services/auth.service';
@@ -28,7 +29,8 @@ export class FavouritesComponent implements OnInit {
 
   constructor(private booksService: BooksService,
     private authService: AuthService,
-    private quotesService: QuotesService) { }
+    private quotesService: QuotesService,
+    private router: Router) { }
 
   ngOnInit() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -42,34 +44,48 @@ export class FavouritesComponent implements OnInit {
     this.booksService.getFavouritesBooks().subscribe(resp => {
       this.books = resp;
       this.dataBooksSource = new MatTableDataSource(this.books);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
 
     this.quotesService.getFavouritesQuotes().subscribe(resp => {
       this.quotes = resp;
       this.dataQuotesSource = new MatTableDataSource(this.quotes);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
 
   }
 
   deleteFromFavouritesBooks(book: Book) {
     let item = {
-      bookId: book.id,
+      id: book.id,
       add: false
     };
 
     this.booksService.addOrDeleteFromFavouritesBooks(item).subscribe(resp => {
-      console.log(resp);
+      this.books.splice(this.books.indexOf(book), 1);
+      this.dataBooksSource = new MatTableDataSource(this.books);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
   deleteFromFavouritesQuotes(quote: Quote) {
     let item = {
-      quoteId: quote.id,
+      id: quote.id,
       add: false
     };
 
     this.quotesService.addOrDeleteFromFavouritesQuotes(item).subscribe(resp => {
-      console.log(resp);
+      this.quotes.splice(this.quotes.indexOf(quote), 1);
+      this.dataQuotesSource = new MatTableDataSource(this.quotes);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 

@@ -42,7 +42,7 @@ export class QuotesService {
     }
 
     addOrDeleteFromFavouritesQuotes(item: any):Observable<any> {
-      return this.http.put<any>(GlobalVariable.BASE_API_URL + 'api/favourites/quotes', item, {
+      return this.http.put<any>(GlobalVariable.BASE_API_URL + 'api/favourites/quotes?quoteId=' + item.id + '&add=' + item.add, {}, {
         withCredentials : true
       });
     }

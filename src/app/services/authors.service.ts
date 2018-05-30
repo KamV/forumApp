@@ -17,7 +17,9 @@ export class AuthorsService {
     }
 
     getAll(): Observable<Author> {
-      return this.http.get<Author>(GlobalVariable.BASE_API_URL + 'api/authors', {
+      let count = 999999;
+      let page = 1;
+      return this.http.get<Author>(GlobalVariable.BASE_API_URL + 'api/authors?count=' + count + '&page=' + page, {
         withCredentials : true
       });
     }

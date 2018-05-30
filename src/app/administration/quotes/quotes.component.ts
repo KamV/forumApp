@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { AuthorsService } from '../../services/authors.service';
 import { BooksService } from '../../services/books.service';
 import { QuotesService } from '../../services/quotes.service';
@@ -34,7 +35,8 @@ export class QuotesComponent implements OnInit {
     private authorsService: AuthorsService,
     private booksService: BooksService,
     private quotesService: QuotesService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -53,10 +55,16 @@ export class QuotesComponent implements OnInit {
 
     this.booksService.getAll().subscribe(resp => {
       this.books = resp.books;
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
 
     this.authorsService.getAll().subscribe(resp => {
       this.authors = resp.authors;
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
@@ -64,6 +72,9 @@ export class QuotesComponent implements OnInit {
     this.form.value.author = this.form.value.book.author;
     this.quotesService.addQuote(this.form.value).subscribe(resp => {
       this.form.reset();
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
@@ -80,11 +91,17 @@ export class QuotesComponent implements OnInit {
       this.quotesService.getAuthorQuotes(this.selectedSearchValue).subscribe(resp => {
         this.quotes = resp;
         this.dataSource = new MatTableDataSource(this.quotes);
+      },
+      error => {
+            this.router.navigate(['signin']);
       });
     } else {
       this.quotesService.getBookQuotes(this.selectedSearchValue).subscribe(resp => {
         this.quotes = resp;
         this.dataSource = new MatTableDataSource(this.quotes);
+      },
+      error => {
+            this.router.navigate(['signin']);
       });
     }
 
@@ -93,6 +110,9 @@ export class QuotesComponent implements OnInit {
   updateQuote(quote: Quote) {
     this.quotesService.updateQuote(quote).subscribe(resp => {
       console.log(resp);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
@@ -100,6 +120,9 @@ export class QuotesComponent implements OnInit {
     this.quotesService.deleteQuote(quote).subscribe(resp => {
       this.quotes.splice(this.quotes.indexOf(resp), 1);
       this.dataSource = new MatTableDataSource(this.quotes);
+    },
+    error => {
+          this.router.navigate(['signin']);
     });
   }
 
