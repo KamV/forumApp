@@ -1,0 +1,27 @@
+<mat-table [dataSource]="dataQuotesSource" matSort class="example-container mat-elevation-z8">
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef> Автор </th>
+    <td mat-cell *matCellDef="let element"> {{ element.author.name }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="book">
+    <th mat-header-cell *matHeaderCellDef> Название книги </th>
+    <td mat-cell *matCellDef="let element"> {{element.book.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="body">
+    <th mat-header-cell *matHeaderCellDef> Цитата </th>
+    <td mat-cell *matCellDef="let element"> {{element.body}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="addOrDeleteFromFavouritesQuotes">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element" >
+      <button type="" mat-button color="primary" (click)="addOrDeleteFromFavouritesQuotes(element)">Добавить в избранное</button>
+    </td>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns">
+  </mat-row>
+</mat-table>

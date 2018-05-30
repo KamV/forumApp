@@ -47,16 +47,25 @@ export class GenresComponent implements OnInit {
 
   addGenre() {
     this.genresService.addGenre(this.form.value).subscribe(resp => {
-      console.log('resp', resp);
+      this.genres.push(resp);
+      this.dataSource = new MatTableDataSource(this.genres);
+
+      this.form.reset();
     });
   }
 
   updateGenre(genre: any) {
-    this.genresService.updateGenre(genre);
+    this.genresService.updateGenre(genre).subscribe(resp => {
+      console.log(genre);
+    });
   }
 
   deleteGenre(genre: any) {
-    this.genresService.deleteGenre(genre);
+    this.genresService.deleteGenre(genre).subscribe(resp => {
+      this.genres.splice(this.genres.indexOf(resp), 1);
+      this.dataSource = new MatTableDataSource(this.genres);
+    });
+
   }
 
   logout() {

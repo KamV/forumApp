@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GlobalVariable } from '../global';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
-import { Quote } from '../declarations';
+import { Quote, AuthorItem, Book } from '../declarations';
 
 @Injectable()
 export class QuotesService {
@@ -11,95 +11,28 @@ export class QuotesService {
 
     }
 
-    // getAll(): Observable<any> {
-    //   const req = new HttpRequest('GET', GlobalVariable.BASE_API_URL + 'api/authors', {
-    //     withCredentials : true
-    //   });
-    //
-    //   return this.http.request(req);
-    // }
-    //
-    getAuthorQuotesTest(author: any) {
-      return [
-        {
-          author: {
-            id: 4,
-            name: 'Шолохов',
-            description: 'Писатель',
-            birthday: new Date('12.12.1212')
-          },
-          book: {
-            id: 1,
-            isbn: 'Хз что здесь',
-            name: 'Тихий Дон',
-            viewedCount: 1,
-            author: {
-              id: 4,
-              name: 'Шолохов',
-              description: 'Писатель',
-              birthday: new Date('12.12.1212')
-            },
-            genres: [
-              {
-                id: 1,
-                name: 'Роман'
-              }
-            ],
-            date: new Date('2018-05-26'),
-            description: 'Какое-то описание'
-          },
-          body: 'Цитаты великих людей',
-          id: 0
-        }
-      ];
-    }
-
-    getBookQuotesTest(book: any) {
-      return [
-        {
-          author: {
-            id: 4,
-            name: 'Шолохов',
-            description: 'Писатель',
-            birthday: new Date('12.12.1212')
-          },
-          book: {
-            id: 1,
-            isbn: 'Хз что здесь',
-            name: 'Тихий Дон',
-            viewedCount: 1,
-            author: {
-              id: 4,
-              name: 'Шолохов',
-              description: 'Писатель',
-              birthday: new Date('12.12.1212')
-            },
-            genres: [
-              {
-                id: 1,
-                name: 'Роман'
-              }
-            ],
-            date: new Date('2018-05-26'),
-            description: 'Какое-то описание'
-          },
-          body: 'Цитаты отличные',
-          id: 0
-        }
-      ];
-    }
-
-    addQuote(quote: any): Observable<any> {
-      console.log(quote);
-      const req = new HttpRequest('POST', GlobalVariable.BASE_API_URL + 'api/quotes', quote, {
+    getAuthorQuotes(author: AuthorItem): Observable<Quote[]> {
+      return this.http.get<Quote[]>(GlobalVariable.BASE_API_URL + 'api/authors/'+ author.id +'/quotes', {
         withCredentials : true
       });
-
-      return this.http.request(req);
     }
 
-    updateQuote(quote: any) {
-      console.log(quote);
+    getBookQuotes(book: Book): Observable<Quote[]> {
+      return this.http.get<Quote[]>(GlobalVariable.BASE_API_URL + 'api/books/'+ book.id +'/quotes', {
+        withCredentials : true
+      });
+    }
+
+    addQuote(quote: Quote): Observable<Quote> {
+      return this.http.post<Quote>(GlobalVariable.BASE_API_URL + 'api/books/' + quote.book.id  + '/quotes', quote, {
+        withCredentials : true
+      });
+    }
+
+    updateQuote(quote: Quote): Observable<Quote> {
+      return this.http.put<Quote>(GlobalVariable.BASE_API_URL + 'api/quotes/' + quote.id, quote, {
+        withCredentials : true
+      });
     }
 
     getFavouritesQuotes(): Observable<Quote[]> {
@@ -114,7 +47,9 @@ export class QuotesService {
       });
     }
 
-    deleteQuote(quote: any) {
-      console.log(quote);
+    deleteQuote(quote: Quote): Observable<Quote> {
+      return this.http.delete<Quote>(GlobalVariable.BASE_API_URL + 'api/quotes/' + quote.id, {
+        withCredentials : true
+      });
     }
 }

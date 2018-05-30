@@ -49,7 +49,10 @@ export class AdminAuthorsComponent implements OnInit {
 
   addAuthor() {
     this.authorsService.addAuthor(this.form.value).subscribe(resp => {
-      console.log('resp', resp);
+      this.authors.push(resp);
+      this.dataSource = new MatTableDataSource(this.authors);
+
+      this.form.reset();
     },
     err => { console.log(err); });
   }
@@ -58,7 +61,7 @@ export class AdminAuthorsComponent implements OnInit {
     this.authorsService.updateAuthor(author).subscribe(resp => {
       console.log('resp', resp);
     });
-    // this.authorsService.updateAuthor(author);
+    
   }
 
   logout() {

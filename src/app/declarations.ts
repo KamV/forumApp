@@ -39,6 +39,10 @@ export interface Book {
   viewedCount: number;
 }
 
+export interface Books {
+  books: Book[];
+}
+
 export interface Quote {
   id: number;
   author: AuthorItem;

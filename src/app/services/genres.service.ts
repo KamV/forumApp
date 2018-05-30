@@ -17,37 +17,21 @@ export class GenresService {
       });
     }
 
-    getAllTest() {
-      return [
-        {
-          id: 0,
-          name: 'Политический'
-        },
-        {
-          id: 1,
-          name: 'Роман'
-        },
-        {
-          id: 2,
-          name: 'Детектив'
-        }
-      ];
-    }
-
-    addGenre(genre: any): Observable<any> {
-      console.log(genre);
-      const req = new HttpRequest('POST', GlobalVariable.BASE_API_URL + 'api/genres', genre, {
+    addGenre(genre: Genre): Observable<Genre> {
+      return this.http.post<Genre>(GlobalVariable.BASE_API_URL + 'api/genres', genre, {
         withCredentials : true
       });
-
-      return this.http.request(req);
     }
 
-    updateGenre(genre: any) {
-      console.log(genre);
+    updateGenre(genre: Genre): Observable<Genre>  {
+      return this.http.put<Genre>(GlobalVariable.BASE_API_URL + 'api/genres/' + genre.id, genre, {
+        withCredentials : true
+      });
     }
 
-    deleteGenre(genre: any) {
-      console.log(genre);
+    deleteGenre(genre: Genre) {
+      return this.http.delete<Genre>(GlobalVariable.BASE_API_URL + 'api/genres/' + genre.id, {
+        withCredentials : true
+      });
     }
 }

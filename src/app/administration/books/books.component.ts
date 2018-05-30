@@ -5,22 +5,24 @@ import { GenresService } from '../../services/genres.service';
 import { AuthorsService } from '../../services/authors.service';
 import { BooksService } from '../../services/books.service';
 import { AuthService } from '../../services/auth.service';
+import { AuthorItem, Genre, Book } from '../../declarations';
 
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css']
 })
-export class BooksComponent implements OnInit {
+export class AdminBooksComponent implements OnInit {
 
   form: FormGroup;
 
-  dataSource = new MatTableDataSource(this.booksService.getBooksTest());
+  dataSource: any;
 
-  authors: any;
-  genres: any;
+  authors: AuthorItem[];
+  genres: Genre[];
+  books: Book[] = [];
 
-  displayedColumns = ['author', 'date', 'description', 'genre', 'name', 'updateButton'];
+  displayedColumns = ['author', 'date', 'description', 'genre', 'name', 'isbn', 'updateButton'];
 
   showAdminMenu = false;
 
@@ -45,13 +47,10 @@ export class BooksComponent implements OnInit {
         author: '',
         date: '',
         description: '',
-        genre: '',
-        name: ''
+        genres: '',
+        name: '',
+        isbn: ''
     });
-
-    // this.dataSource = new MatTableDataSource(this.booksService.getBooksTest());
-
-    this.dataSource.sort = this.sort;
 
     this.authorsService.getAll().subscribe(resp => {
       this.authors = resp.authors;
@@ -59,6 +58,13 @@ export class BooksComponent implements OnInit {
 
     this.genresService.getAll().subscribe(resp => {
       this.genres = resp;
+    });
+
+    this.booksService.getAll().subscribe(resp => {
+      this.books = resp.books;
+      this.dataSource = new MatTableDataSource(this.books);
+
+      this.dataSource.sort = this.sort;
     });
   }
 
@@ -68,12 +74,17 @@ export class BooksComponent implements OnInit {
 
   addBook() {
     this.booksService.addBook(this.form.value).subscribe(resp => {
-      console.log('resp', resp);
+      this.books.push(resp);
+      this.dataSource = new MatTableDataSource(this.books);
+
+      this.form.reset();
     });
   }
 
-  updateBook(book: any) {
-    this.booksService.updateBook(book);
+  updateBook(book: Book) {
+    this.booksService.updateBook(book).subscribe(resp => {
+      console.log(book);
+    });
   }
 
   logout() {

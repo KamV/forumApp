@@ -29,7 +29,7 @@
           <input matInput placeholder="Описание" formControlName="description" required/>
         </mat-form-field>
         <mat-form-field class="">
-          <mat-select placeholder="Жанр" [(ngModel)]="selectedGenreValue" formControlName="genre" multiple required>
+          <mat-select placeholder="Жанр" formControlName="genres" multiple required>
             <mat-option *ngFor="let genre of genres" [value]="genre">
               {{genre.name}}
             </mat-option>
@@ -37,6 +37,9 @@
         </mat-form-field>
         <mat-form-field class="">
           <input matInput placeholder="Название" formControlName="name" required/>
+        </mat-form-field>
+        <mat-form-field class="">
+          <input matInput placeholder="ISBN" formControlName="isbn" required/>
         </mat-form-field>
       <button type="" mat-raised-button color="primary">Добавить</button>
     </form>
@@ -84,6 +87,13 @@
     <th mat-header-cell *matHeaderCellDef> Название </th>
     <td mat-cell *matCellDef="let element">
       <input matInput type="text" placeholder="Описание" [(ngModel)]="element.name" required/>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="isbn">
+    <th mat-header-cell *matHeaderCellDef> ISBN </th>
+    <td mat-cell *matCellDef="let element">
+      <input matInput type="text" placeholder="ISBN" [(ngModel)]="element.isbn" required/>
     </td>
   </ng-container>
 

@@ -32,7 +32,7 @@ import { GenresService } from './services/genres.service';
 import { QuotesComponent } from './administration/quotes/quotes.component';
 import { QuotesService } from './services/quotes.service';
 import { BooksService } from './services/books.service';
-import { BooksComponent } from './administration/books/books.component';
+import { AdminBooksComponent } from './administration/books/books.component';
 import { MainComponent } from './main/main.component';
 
 import { AuthGuard } from './guards/auth.guard';
@@ -40,6 +40,8 @@ import { AdminGuard } from './guards/admin.guard';
 import { AuthorsComponent } from './authors/authors.component';
 import { AboutAuthorDialogComponent } from './authors/about-author-dialog/about-author-dialog.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { BooksComponent } from './books/books.component';
+import { QuotesDialogComponent } from './books/quotes-dialog/quotes-dialog.component';
 
 
 @NgModule({
@@ -51,11 +53,13 @@ import { FavouritesComponent } from './favourites/favourites.component';
     AdminAuthorsComponent,
     GenresComponent,
     QuotesComponent,
-    BooksComponent,
+    AdminBooksComponent,
     MainComponent,
     AuthorsComponent,
     AboutAuthorDialogComponent,
-    FavouritesComponent
+    FavouritesComponent,
+    BooksComponent,
+    QuotesDialogComponent
   ],
   imports: [
     BrowserModule,

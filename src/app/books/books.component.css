@@ -1,0 +1,28 @@
+mat-card {
+  margin: 1%;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+mat-table {
+  margin: 1%;
+}
+
+th, td {
+  margin: auto;
+  text-align: center;
+  width: 200px;
+}
+
+.search {
+  margin-left: 15px;
+}
+
+.date-input {
+  text-align: right;
+}
+
+.flex-row {
+  flex-grow: 1;
+}

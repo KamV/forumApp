@@ -5,6 +5,7 @@ import { QuotesService } from '../../services/quotes.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
+import { Quote } from '../../declarations';
 
 @Component({
   selector: 'app-quotes',
@@ -19,6 +20,8 @@ export class QuotesComponent implements OnInit {
 
   books: any;
   authors: any;
+  quotes: Quote[];
+
   searchValues: any;
   selectedParamValue: string;
   selectedSearchValue: any;
@@ -44,10 +47,13 @@ export class QuotesComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       book: '',
-      body: ''
+      body: '',
+      author: ''
     });
 
-    this.books = this.booksService.getBooksTest();
+    this.booksService.getAll().subscribe(resp => {
+      this.books = resp.books;
+    });
 
     this.authorsService.getAll().subscribe(resp => {
       this.authors = resp.authors;
@@ -55,15 +61,9 @@ export class QuotesComponent implements OnInit {
   }
 
   addQuote() {
-    let quote;
-    for (var key in this.books)  {
-      if (this.form.value.book == this.books[key]) {
-        quote = this.books[key];
-      }
-    }
-    quote['body'] = this.form.value.body;
-    this.quotesService.addQuote(quote).subscribe(resp => {
-      console.log('resp', resp);
+    this.form.value.author = this.form.value.book.author;
+    this.quotesService.addQuote(this.form.value).subscribe(resp => {
+      this.form.reset();
     });
   }
 
@@ -77,27 +77,30 @@ export class QuotesComponent implements OnInit {
 
   getQuotes() {
     if (this.selectedParamValue == 'Автор') {
-      this.getAuthorQuotes(this.selectedSearchValue);
+      this.quotesService.getAuthorQuotes(this.selectedSearchValue).subscribe(resp => {
+        this.quotes = resp;
+        this.dataSource = new MatTableDataSource(this.quotes);
+      });
     } else {
-      this.getBookQuotes(this.selectedSearchValue);
+      this.quotesService.getBookQuotes(this.selectedSearchValue).subscribe(resp => {
+        this.quotes = resp;
+        this.dataSource = new MatTableDataSource(this.quotes);
+      });
     }
 
   }
 
-  getAuthorQuotes(value: any) {
-    this.dataSource = new MatTableDataSource(this.quotesService.getAuthorQuotesTest(value));
+  updateQuote(quote: Quote) {
+    this.quotesService.updateQuote(quote).subscribe(resp => {
+      console.log(resp);
+    });
   }
 
-  getBookQuotes(value: any) {
-    this.dataSource = new MatTableDataSource(this.quotesService.getBookQuotesTest(value));
-  }
-
-  updateQuote(quote: any) {
-    this.quotesService.updateQuote(quote);
-  }
-
-  deleteQuote(quote: any) {
-    this.quotesService.deleteQuote(quote);
+  deleteQuote(quote: Quote) {
+    this.quotesService.deleteQuote(quote).subscribe(resp => {
+      this.quotes.splice(this.quotes.indexOf(resp), 1);
+      this.dataSource = new MatTableDataSource(this.quotes);
+    });
   }
 
   logout() {
