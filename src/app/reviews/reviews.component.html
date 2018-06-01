@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/main">Главная</button>
+  <button mat-button routerLink="/authors">Авторы</button>
+  <button mat-button routerLink="/books">Книги</button>
+  <button mat-button routerLink="/favourites">Избранное</button>
+  <span class="flex-row"></span>
+  <button mat-button [matMenuTriggerFor]="menu">Администрирование</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/admin/authors">Авторы</button>
+      <button mat-menu-item routerLink="/admin/books">Книги</button>
+      <button mat-menu-item routerLink="/admin/genres">Жанры</button>
+      <button mat-menu-item routerLink="/admin/quotes">Цитаты</button>
+    </mat-menu>
+  <button mat-button (click)="logout()">Выйти</button>
+</mat-toolbar>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (submit)="addReview()">
+      <mat-form-field class="">
+        <input matInput placeholder="Оглавление" formControlName="title" required/>
+      </mat-form-field>
+      <mat-form-field class="">
+        <input matInput placeholder="Отзыв" formControlName="review" required/>
+      </mat-form-field>
+      <button type="" mat-raised-button color="primary">Добавить отзыв</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngFor="let review of reviews">
+  <mat-card-content>
+    <p class="title">
+      {{review.title}}
+    </p>
+    <p class="review">
+      {{review.review}}
+    </p>
+    <p class="author" *ngIf="review.author.id !== currentUser.id">
+      {{review.author.nickname}}
+    </p>
+    <div *ngIf="review.author.id === currentUser.id">
+      <button type="" mat-button color="primary" (click)="openDialog(review)">Редактировать</button>
+      <button type="" mat-raised-button color="primary" (click)="deleteReview(review)">Удалить</button>
+    </div>
+  </mat-card-content>
+</mat-card>

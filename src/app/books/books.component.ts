@@ -15,7 +15,7 @@ export class BooksComponent implements OnInit {
 
   dataSource: any;
 
-  displayedColumns = ['author', 'date', 'description', 'genre', 'name', 'showQuotes', 'addOrDeleteFromFavouritesBooksButton'];
+  displayedColumns = ['author', 'date', 'description', 'genre', 'name', 'showQuotes', 'showReviews', 'addOrDeleteFromFavouritesBooksButton'];
 
   showAdminMenu = false;
 
@@ -58,6 +58,10 @@ export class BooksComponent implements OnInit {
       data: { book: book }
     });
 
+  }
+
+  showReview(book: Book) {
+    this.router.navigate(['reviews', book.id]);
   }
 
   showAction(book: Book) {

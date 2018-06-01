@@ -42,6 +42,9 @@ import { AboutAuthorDialogComponent } from './authors/about-author-dialog/about-
 import { FavouritesComponent } from './favourites/favourites.component';
 import { BooksComponent } from './books/books.component';
 import { QuotesDialogComponent } from './books/quotes-dialog/quotes-dialog.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { ReviewsService } from './services/reviews.service';
+import { ReviewChangeDialogComponent } from './reviews/review-change-dialog/review-change-dialog.component';
 
 
 @NgModule({
@@ -59,7 +62,9 @@ import { QuotesDialogComponent } from './books/quotes-dialog/quotes-dialog.compo
     AboutAuthorDialogComponent,
     FavouritesComponent,
     BooksComponent,
-    QuotesDialogComponent
+    QuotesDialogComponent,
+    ReviewsComponent,
+    ReviewChangeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -79,11 +84,12 @@ import { QuotesDialogComponent } from './books/quotes-dialog/quotes-dialog.compo
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes)
   ],
   entryComponents: [
     AboutAuthorDialogComponent,
-    QuotesDialogComponent
+    QuotesDialogComponent,
+    ReviewChangeDialogComponent
   ],
   providers: [
     AuthService,
@@ -91,6 +97,7 @@ import { QuotesDialogComponent } from './books/quotes-dialog/quotes-dialog.compo
     GenresService,
     BooksService,
     QuotesService,
+    ReviewsService,
     CookieService,
     AuthGuard,
     AdminGuard

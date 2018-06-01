@@ -51,3 +51,16 @@ export interface Quote {
   book: Book;
   isFavourite: boolean;
 }
+
+export interface Reviews {
+  reviews: ReviewItem[];
+}
+
+export interface ReviewItem {
+  id: number;
+  author: AuthorItem;
+  book: Book;
+  grade: number;
+  review: string;
+  title: string;
+}
