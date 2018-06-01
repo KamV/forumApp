@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
   signup() {
     this.authService.signUp(this.form.value).subscribe(resp => {
       localStorage.setItem('currentUser', JSON.stringify({id: resp.id, nickname: resp.nickname, isAuth: true, role: resp.roles[0].authority }));
-      this.router.navigate(['main']);
+      this.router.navigate(['favourites']);
     });
   }
 

@@ -12,6 +12,8 @@ export class SignInComponent implements OnInit {
 
   form: FormGroup;
 
+  errorAuth: boolean = false;
+
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router
@@ -28,8 +30,11 @@ export class SignInComponent implements OnInit {
     this.authService.signIn(this.form.value.login, this.form.value.password).subscribe(resp => {
       this.authService.getMe().subscribe(resp => {
         localStorage.setItem('currentUser', JSON.stringify({id: resp.id, isAuth: true, role: resp.roles[0].authority }));
-        this.router.navigate(['main']);
+        this.router.navigate(['favourites']);
       });
+    },
+    error => {
+          this.errorAuth = true;
     });
   }
 

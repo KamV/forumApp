@@ -14,5 +14,8 @@
       </mat-form-field>
       <button type="submit" mat-raised-button color="primary">Войти</button>
     </form>
+    <p class="error-pass" *ngIf="errorAuth">
+      Неверный логин или пароль
+    </p>
   </mat-card-content>
 </mat-card>

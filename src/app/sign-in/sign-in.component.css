@@ -13,3 +13,8 @@ mat-card {
 .flex-row {
   flex-grow: 1;
 }
+
+.error-pass {
+  text-align: center;
+  color: #FF0000;
+}

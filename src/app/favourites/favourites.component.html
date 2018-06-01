@@ -16,80 +16,86 @@
 
 <mat-card>
   <mat-card-content>
-    Избранные книги
+    <p class="title">
+      Избранные книги
+    </p>
+
+    <mat-table [dataSource]="dataBooksSource" matSort class="example-container mat-elevation-z8">
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef> Автор </th>
+        <td mat-cell *matCellDef="let element"> {{ element.author.name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Дата выпуска </th>
+        <td mat-cell *matCellDef="let element" > {{element.date | date:'yyyy-MM-dd'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Описание </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="genre">
+        <th mat-header-cell *matHeaderCellDef> Жанр </th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngFor="let genre of element.genres">
+            {{genre.name}}
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Название </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deleteFromFavouritesBooksButton">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" >
+          <button type="" mat-button color="primary" (click)="deleteFromFavouritesBooks(element)">Убрать из избранного</button>
+        </td>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedBookColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedBookColumns">
+      </mat-row>
+    </mat-table>
   </mat-card-content>
 </mat-card>
-<mat-table [dataSource]="dataBooksSource" matSort class="example-container mat-elevation-z8">
-  <ng-container matColumnDef="author">
-    <th mat-header-cell *matHeaderCellDef> Автор </th>
-    <td mat-cell *matCellDef="let element"> {{ element.author.name }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef> Дата выпуска </th>
-    <td mat-cell *matCellDef="let element" > {{element.date | date:'yyyy-MM-dd'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef> Описание </th>
-    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="genre">
-    <th mat-header-cell *matHeaderCellDef> Жанр </th>
-    <td mat-cell *matCellDef="let element">
-      <div *ngFor="let genre of element.genres">
-        {{genre.name}}
-      </div>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Название </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="deleteFromFavouritesBooksButton">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element" >
-      <button type="" mat-button color="primary" (click)="deleteFromFavouritesBooks(element)">Убрать из избранного</button>
-    </td>
-  </ng-container>
-
-  <mat-header-row *matHeaderRowDef="displayedBookColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedBookColumns">
-  </mat-row>
-</mat-table>
 
 <mat-card class="quotes">
   <mat-card-content>
-    Избранные цитаты
+    <p class="title">
+      Избранные цитаты
+    </p>
+
+    <mat-table [dataSource]="dataQuotesSource" matSort class="example-container mat-elevation-z8">
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef> Автор </th>
+        <td mat-cell *matCellDef="let element"> {{ element.author.name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="book">
+        <th mat-header-cell *matHeaderCellDef> Название книги </th>
+        <td mat-cell *matCellDef="let element"> {{element.book.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="body">
+        <th mat-header-cell *matHeaderCellDef> Цитата </th>
+        <td mat-cell *matCellDef="let element"> {{element.body}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deleteFromFavouritesQuotesButton">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" >
+          <button type="" mat-button color="primary" (click)="deleteFromFavouritesQuotes(element)">Убрать из избранного</button>
+        </td>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedQuoteColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedQuoteColumns">
+      </mat-row>
+    </mat-table>
   </mat-card-content>
 </mat-card>
-<mat-table [dataSource]="dataQuotesSource" matSort class="example-container mat-elevation-z8">
-  <ng-container matColumnDef="author">
-    <th mat-header-cell *matHeaderCellDef> Автор </th>
-    <td mat-cell *matCellDef="let element"> {{ element.author.name }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="book">
-    <th mat-header-cell *matHeaderCellDef> Название книги </th>
-    <td mat-cell *matCellDef="let element"> {{element.book.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="body">
-    <th mat-header-cell *matHeaderCellDef> Цитата </th>
-    <td mat-cell *matCellDef="let element"> {{element.body}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="deleteFromFavouritesQuotesButton">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element" >
-      <button type="" mat-button color="primary" (click)="deleteFromFavouritesQuotes(element)">Убрать из избранного</button>
-    </td>
-  </ng-container>
-
-  <mat-header-row *matHeaderRowDef="displayedQuoteColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedQuoteColumns">
-  </mat-row>
-</mat-table>
