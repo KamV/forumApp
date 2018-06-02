@@ -16,8 +16,6 @@ export class AuthorsComponent implements OnInit {
 
   form: FormGroup;
 
-  dataSource;
-
   displayedColumns = ['name'];
 
   showAdminMenu = false;
@@ -47,7 +45,6 @@ export class AuthorsComponent implements OnInit {
 
     this.authorsService.getAll().subscribe(resp => {
       this.authors = resp.authors;
-      this.dataSource = new MatTableDataSource(this.authors);
     },
     error => {
           this.router.navigate(['signin']);
@@ -56,9 +53,12 @@ export class AuthorsComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue;
+    this.authorsService.searchAuthors(filterValue).subscribe(resp => {
+      this.authors = resp.authors;
+    },
+    error => {
+          this.router.navigate(['signin']);
+    });
   }
 
   openDialog(author: AuthorItem) {

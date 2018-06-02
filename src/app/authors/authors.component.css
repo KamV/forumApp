@@ -28,10 +28,15 @@ th, td {
   flex-grow: 1;
 }
 
-mat-grid-tile {
-  /* background: lightblue; */
-  border: 1px solid #A9A9A9;
-  /* border: 1px solid #A9A9A9; /* Белая рамка */
-  /* border-radius: 1px; */
-  /* box-shadow: 0 0 2px rgba(0,0,0,0.5); */
+.container {
+  border: 1px solid #fff;
+  border-radius: 5px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.22);
+  width: 200px;
+  height: 100px;
+  text-align: center;
+}
+
+.text-name {
+  margin-top: 40px;
 }

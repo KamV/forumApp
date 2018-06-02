@@ -24,6 +24,14 @@ export class AuthorsService {
       });
     }
 
+    searchAuthors(query: string): Observable<Author> {
+      let count = 999999;
+      let page = 1;
+      return this.http.get<Author>(GlobalVariable.BASE_API_URL + 'api/authors?query=' + query + '&count=' + count + '&page=' + page, {
+        withCredentials : true
+      });
+    }
+
     addAuthor(author: AuthorItem): Observable<AuthorItem> {
       return this.http.post<AuthorItem>(GlobalVariable.BASE_API_URL + 'api/authors', author, {
         withCredentials : true
