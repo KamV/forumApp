@@ -76,3 +76,14 @@ export interface ThemeItem {
   msgCount: number;
   author: AuthorItem;
 }
+
+export interface Messages {
+  messages: MessageItem[];
+}
+
+export interface MessageItem {
+  messageId: number;
+  body: string;
+  creationTime: string;
+  author: AuthorItem;
+}

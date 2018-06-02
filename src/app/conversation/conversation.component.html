@@ -1,0 +1,45 @@
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/themes">Форум</button>
+  <button mat-button routerLink="/authors">Авторы</button>
+  <button mat-button routerLink="/books">Книги</button>
+  <button mat-button routerLink="/favourites">Избранное</button>
+  <span class="flex-row"></span>
+  <button mat-button *ngIf="showAdminMenu" [matMenuTriggerFor]="menu">Администрирование</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/admin/authors">Авторы</button>
+      <button mat-menu-item routerLink="/admin/books">Книги</button>
+      <button mat-menu-item routerLink="/admin/genres">Жанры</button>
+      <button mat-menu-item routerLink="/admin/quotes">Цитаты</button>
+    </mat-menu>
+  <button mat-button (click)="logout()">Выйти</button>
+</mat-toolbar>
+
+<mat-card>
+  <mat-card-content>
+    <mat-card class="messages-field">
+      <mat-card-content class="messages-content">
+        <div class="message" [class.my-self]="message.author.id === currentUser.id" *ngFor="let message of messages">
+          <p class="author">
+            {{message.author.nickname}} ({{message.creationTime | date:'dd-MM-yyyy HH:mm'}})
+            <button mat-icon-button [matMenuTriggerFor]="messageMenu" *ngIf="message.author.id === currentUser.id">
+              <mat-icon>toc</mat-icon>
+            </button>
+              <mat-menu #messageMenu="matMenu">
+                <button mat-menu-item (click)="openDialog(message)">Редактировать</button>
+                <button mat-menu-item (click)="deleteMessage(message)">Удалить</button>
+              </mat-menu>
+          </p>
+          <p>
+            {{message.body}}
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <form [formGroup]="form" (submit)="addMessage()">
+      <mat-form-field class="">
+        <input matInput placeholder="Сообщение" formControlName="body" required/>
+      </mat-form-field>
+      <button type="" mat-raised-button color="primary">Отправить сообщение</button>
+    </form>
+  </mat-card-content>
+</mat-card>

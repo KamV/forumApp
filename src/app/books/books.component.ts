@@ -5,6 +5,7 @@ import { BooksService } from '../services/books.service';
 import { AuthService } from '../services/auth.service';
 import { Book } from '../declarations';
 import { QuotesDialogComponent } from './quotes-dialog/quotes-dialog.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-books',

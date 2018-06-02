@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <button mat-button routerLink="/main">Главная</button>
+  <button mat-button routerLink="/themes">Форум</button>
   <button mat-button routerLink="/authors">Авторы</button>
   <button mat-button routerLink="/books">Книги</button>
   <button mat-button routerLink="/favourites">Избранное</button>
@@ -19,7 +19,13 @@
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
   </mat-form-field>
 </div>
-<mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8">
+<mat-grid-list cols="4" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let author of authors" (click)="openDialog(author)">
+    {{author.name}}
+    <!-- <button type="" mat-button (click)="openDialog(author)">{{author.name}}</button> -->
+  </mat-grid-tile>
+</mat-grid-list>
+<!-- <mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Авторы </th>
     <td mat-cell *matCellDef="let element">
@@ -30,4 +36,4 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns">
   </mat-row>
-</mat-table>
+</mat-table> -->

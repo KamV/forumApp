@@ -1,0 +1,40 @@
+mat-card {
+  margin: 1%;
+  display: flex;
+  justify-content: center;
+}
+
+.date-input {
+  text-align: right;
+}
+
+.flex-row {
+  flex-grow: 1;
+}
+
+.messages-field {
+  height: 400px;
+  overflow: auto;
+  margin-top: 5px;
+}
+
+form {
+  margin-left: 20%;
+}
+
+.messages-content {
+  width: 600px;
+  text-align: left;
+}
+
+.author {
+  font-weight: bold;
+}
+
+.message {
+  margin-bottom: 30px;
+}
+
+.my-self {
+  text-align: right;
+}

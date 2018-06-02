@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <button mat-button routerLink="/main">Главная</button>
+  <button mat-button routerLink="/themes">Форум</button>
   <button mat-button routerLink="/authors">Авторы</button>
   <button mat-button routerLink="/books">Книги</button>
   <button mat-button routerLink="/favourites">Избранное</button>
@@ -32,12 +32,12 @@
     <p class="author" *ngIf="theme.author.id !== currentUser.id">
       {{theme.author.nickname}}
     </p>
-    <div *ngIf="theme.author.id === currentUser.id">
+    <div class="join-button">
+      <button type="" mat-button (click)="showConversation(theme)">Присоединиться к обсуждению</button>
+    </div>
+    <div class="admin-button" *ngIf="theme.author.id === currentUser.id">
       <button type="" mat-button color="primary" (click)="openDialog(theme)">Редактировать</button>
       <button type="" mat-raised-button color="primary" (click)="deleteTheme(theme)">Удалить</button>
-    </div>
-    <div class="join-button">
-      <button type="" mat-raised-button color="primary" (click)="showConversation(theme)">Присоединиться к обсуждению</button>
     </div>
   </mat-card-content>
 </mat-card>

@@ -13,7 +13,10 @@ import { MatButtonModule,
   MatSelectModule,
   MatMenuModule,
   MatSortModule,
-  MatDialogModule
+  MatDialogModule,
+  MatListModule,
+  MatIconModule,
+  MatGridListModule
  } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -48,6 +51,8 @@ import { ReviewChangeDialogComponent } from './reviews/review-change-dialog/revi
 import { ForumComponent } from './forum/forum.component';
 import { ForumService } from './services/forum.service';
 import { ForumDialogComponent } from './forum/forum-dialog/forum-dialog.component';
+import { ConversationComponent } from './conversation/conversation.component';
+import { ChangeMessageDialogComponent } from './conversation/change-message-dialog/change-message-dialog.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +73,9 @@ import { ForumDialogComponent } from './forum/forum-dialog/forum-dialog.componen
     ReviewsComponent,
     ReviewChangeDialogComponent,
     ForumComponent,
-    ForumDialogComponent
+    ForumDialogComponent,
+    ConversationComponent,
+    ChangeMessageDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +91,9 @@ import { ForumDialogComponent } from './forum/forum-dialog/forum-dialog.componen
     MatMenuModule,
     MatSortModule,
     MatDialogModule,
+    MatListModule,
+    MatIconModule,
+    MatGridListModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -94,7 +104,8 @@ import { ForumDialogComponent } from './forum/forum-dialog/forum-dialog.componen
     AboutAuthorDialogComponent,
     QuotesDialogComponent,
     ReviewChangeDialogComponent,
-    ForumDialogComponent
+    ForumDialogComponent,
+    ChangeMessageDialogComponent
   ],
   providers: [
     AuthService,

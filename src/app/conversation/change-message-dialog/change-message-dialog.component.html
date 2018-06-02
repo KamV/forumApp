@@ -1,0 +1,10 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (submit)="updateMessage()">
+      <mat-form-field class="">
+        <input matInput placeholder="Сообщение" formControlName="body" required/>
+      </mat-form-field>
+      <button type="" mat-raised-button color="primary">Сохранить</button>
+    </form>
+  </mat-card-content>
+</mat-card>
