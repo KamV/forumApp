@@ -15,7 +15,7 @@ export class BooksComponent implements OnInit {
 
   dataSource: any;
 
-  displayedColumns = ['author', 'date', 'description', 'genre', 'name', 'showQuotes', 'showReviews', 'addOrDeleteFromFavouritesBooksButton'];
+  displayedColumns = ['name', 'author', 'date', 'description', 'genre', 'showQuotes', 'showReviews', 'addOrDeleteFromFavouritesBooksButton'];
 
   showAdminMenu = false;
 

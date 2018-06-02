@@ -1,0 +1,32 @@
+mat-card {
+  margin: 1%;
+  display: flex;
+  justify-content: center;
+}
+
+mat-table {
+  margin: 1%;
+}
+
+.date-input {
+  text-align: right;
+}
+
+.flex-row {
+  flex-grow: 1;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+.author {
+  font-weight: bold;
+  text-align: right;
+}
+
+.join-button {
+  margin-top: 20px;
+}

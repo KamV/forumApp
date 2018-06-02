@@ -64,3 +64,15 @@ export interface ReviewItem {
   review: string;
   title: string;
 }
+
+export interface Themes {
+  themes: ThemeItem[];
+}
+
+export interface ThemeItem {
+  themeId: number;
+  title: string;
+  creationTime: string;
+  msgCount: number;
+  author: AuthorItem;
+}

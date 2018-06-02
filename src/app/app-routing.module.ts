@@ -11,6 +11,7 @@ import { AuthorsComponent } from './authors/authors.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { BooksComponent } from './books/books.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { ForumComponent } from './forum/forum.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -22,6 +23,7 @@ export const routes: Routes = [
   { path: 'main', component: MainComponent, canActivate: [AuthGuard] },
   { path: 'authors', component: AuthorsComponent, canActivate: [AuthGuard] },
   { path: 'books', component: BooksComponent, canActivate: [AuthGuard] },
+  { path: 'themes', component: ForumComponent, canActivate: [AuthGuard] },
   { path: 'reviews/:id', component: ReviewsComponent, canActivate: [AuthGuard] },
   { path: 'favourites', component: FavouritesComponent, canActivate: [AuthGuard] },
   { path: 'admin/authors', component: AdminAuthorsComponent, canActivate: [AuthGuard, AdminGuard] },

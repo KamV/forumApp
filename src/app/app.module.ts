@@ -45,7 +45,9 @@ import { QuotesDialogComponent } from './books/quotes-dialog/quotes-dialog.compo
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ReviewsService } from './services/reviews.service';
 import { ReviewChangeDialogComponent } from './reviews/review-change-dialog/review-change-dialog.component';
-
+import { ForumComponent } from './forum/forum.component';
+import { ForumService } from './services/forum.service';
+import { ForumDialogComponent } from './forum/forum-dialog/forum-dialog.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { ReviewChangeDialogComponent } from './reviews/review-change-dialog/revi
     BooksComponent,
     QuotesDialogComponent,
     ReviewsComponent,
-    ReviewChangeDialogComponent
+    ReviewChangeDialogComponent,
+    ForumComponent,
+    ForumDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,8 @@ import { ReviewChangeDialogComponent } from './reviews/review-change-dialog/revi
   entryComponents: [
     AboutAuthorDialogComponent,
     QuotesDialogComponent,
-    ReviewChangeDialogComponent
+    ReviewChangeDialogComponent,
+    ForumDialogComponent
   ],
   providers: [
     AuthService,
@@ -98,6 +103,7 @@ import { ReviewChangeDialogComponent } from './reviews/review-change-dialog/revi
     BooksService,
     QuotesService,
     ReviewsService,
+    ForumService,
     CookieService,
     AuthGuard,
     AdminGuard

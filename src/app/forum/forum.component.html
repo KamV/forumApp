@@ -15,32 +15,29 @@
 </mat-toolbar>
 <mat-card>
   <mat-card-content>
-    <form [formGroup]="form" (submit)="addReview()">
+    <form [formGroup]="form" (submit)="addTheme()">
       <mat-form-field class="">
-        <input matInput placeholder="Оглавление" formControlName="title" required/>
+        <input matInput placeholder="Тема" formControlName="title" required/>
       </mat-form-field>
-      <mat-form-field class="">
-        <input matInput placeholder="Отзыв" formControlName="review" required/>
-      </mat-form-field>
-      <button type="" mat-raised-button color="primary">Добавить отзыв</button>
+      <button type="" mat-raised-button color="primary">Добавить тему</button>
     </form>
   </mat-card-content>
 </mat-card>
 
-<mat-card *ngFor="let review of reviews">
+<mat-card *ngFor="let theme of themes">
   <mat-card-content>
     <p class="title">
-      {{review.title}}
+      {{theme.title}}
     </p>
-    <p class="review">
-      {{review.review}}
+    <p class="author" *ngIf="theme.author.id !== currentUser.id">
+      {{theme.author.nickname}}
     </p>
-    <p class="author" *ngIf="review.author.id !== currentUser.id">
-      {{review.author.nickname}}
-    </p>
-    <div *ngIf="review.author.id === currentUser.id">
-      <button type="" mat-button color="primary" (click)="openDialog(review)">Редактировать</button>
-      <button type="" mat-raised-button color="primary" (click)="deleteReview(review)">Удалить</button>
+    <div *ngIf="theme.author.id === currentUser.id">
+      <button type="" mat-button color="primary" (click)="openDialog(theme)">Редактировать</button>
+      <button type="" mat-raised-button color="primary" (click)="deleteTheme(theme)">Удалить</button>
+    </div>
+    <div class="join-button">
+      <button type="" mat-raised-button color="primary" (click)="showConversation(theme)">Присоединиться к обсуждению</button>
     </div>
   </mat-card-content>
 </mat-card>
