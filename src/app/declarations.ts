@@ -44,6 +44,24 @@ export interface Books {
   books: Book[];
 }
 
+export interface Item {
+  id: number,
+  name: string,
+  minValue: number,
+  checkDate: Date,
+  value: number,
+  monthlyConsumption: number,
+  nextMonthlyConsumption: number,
+  valueInWork: number,
+  annualConsumption: number
+}
+
+export interface Material {
+  id: number;
+  name: string;
+  articule: string;
+}
+
 export interface Quote {
   id: number;
   author: AuthorItem;

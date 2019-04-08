@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Металл",
+    "minValue": 100,
+    "checkDate": "31.12.19",
+    "value": 2000,
+    "monthlyConsumption": 100,
+    "nextMonthlyConsumption": 100,
+    "valueInWork": 10,
+    "annualConsumption": 1200
+  },
+  {
+    "id": 2,
+    "name": "Пластик",
+    "minValue": 3000,
+    "checkDate": "31.12.19",
+    "value": 45000,
+    "monthlyConsumption": 3000,
+    "nextMonthlyConsumption": 3000,
+    "valueInWork": 300,
+    "annualConsumption": 36000
+  }
+]

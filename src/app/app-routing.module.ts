@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ErrorComponent } from './error/error.component';
-import { AdminAuthorsComponent } from './administration/authors/authors.component';
+import { AdminMaterialsComponent } from './administration/materials/materials.component';
 import { GenresComponent } from './administration/genres/genres.component';
 import { QuotesComponent } from './administration/quotes/quotes.component';
 import { AdminBooksComponent } from './administration/books/books.component';
@@ -21,16 +21,16 @@ export const routes: Routes = [
   { path: '', component: SignInComponent },
   { path: 'signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'main', component: MainComponent, canActivate: [AuthGuard] },
-  { path: 'authors', component: AuthorsComponent, canActivate: [AuthGuard] },
-  { path: 'books', component: BooksComponent, canActivate: [AuthGuard] },
-  { path: 'themes', component: ForumComponent, canActivate: [AuthGuard] },
-  { path: 'reviews/:id', component: ReviewsComponent, canActivate: [AuthGuard] },
-  { path: 'conversation/:themeId', component: ConversationComponent, canActivate: [AuthGuard] },
-  { path: 'favourites', component: FavouritesComponent, canActivate: [AuthGuard] },
-  { path: 'admin/authors', component: AdminAuthorsComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'admin/genres', component: GenresComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'admin/quotes', component: QuotesComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'admin/books', component: AdminBooksComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'main', component: MainComponent },
+  { path: 'authors', component: AuthorsComponent },
+  { path: 'books', component: BooksComponent },
+  { path: 'themes', component: ForumComponent },
+  { path: 'reviews/:id', component: ReviewsComponent },
+  { path: 'conversation/:themeId', component: ConversationComponent },
+  { path: 'favourites', component: FavouritesComponent },
+  { path: 'admin/materials', component: AdminMaterialsComponent },
+  { path: 'admin/genres', component: GenresComponent },
+  { path: 'admin/quotes', component: QuotesComponent },
+  { path: 'admin/books', component: AdminBooksComponent },
   { path: '**', component: ErrorComponent }
 ];

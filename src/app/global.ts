@@ -1,3 +1,3 @@
 export const GlobalVariable = Object.freeze({
-     BASE_API_URL: 'http://78.155.217.114:8080/'
+     BASE_API_URL: 'http://localhost:3000/'
  });

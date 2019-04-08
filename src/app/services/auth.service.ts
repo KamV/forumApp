@@ -17,9 +17,8 @@ export class AuthService {
     }
 
     signIn(login: string, password: string): Observable<any> {
-      return this.http.post<any>(GlobalVariable.BASE_API_URL + 'api/sign-in', {}, {
-        headers: new HttpHeaders().append('login', login).append('password', password),
-        withCredentials : true
+      return this.http.post<any>(GlobalVariable.BASE_API_URL + 'signin', {}, {
+        headers: new HttpHeaders().append('login', login).append('password', password)
       });
     }
 

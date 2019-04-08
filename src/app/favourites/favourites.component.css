@@ -5,6 +5,10 @@ mat-card {
   font-weight: 600;
 }
 
+mat-card-content {
+  width: stretch;
+}
+
 mat-table {
   margin: 1%;
 }

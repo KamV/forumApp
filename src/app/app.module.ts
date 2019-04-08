@@ -28,13 +28,14 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ErrorComponent } from './error/error.component';
 import { AuthService } from './services/auth.service';
-import { AdminAuthorsComponent } from './administration/authors/authors.component';
+import { AdminMaterialsComponent } from './administration/materials/materials.component';
 import { AuthorsService } from './services/authors.service';
 import { GenresComponent } from './administration/genres/genres.component';
 import { GenresService } from './services/genres.service';
 import { QuotesComponent } from './administration/quotes/quotes.component';
 import { QuotesService } from './services/quotes.service';
 import { BooksService } from './services/books.service';
+import { ItemsService } from './services/items.service';
 import { AdminBooksComponent } from './administration/books/books.component';
 import { MainComponent } from './main/main.component';
 
@@ -53,6 +54,7 @@ import { ForumService } from './services/forum.service';
 import { ForumDialogComponent } from './forum/forum-dialog/forum-dialog.component';
 import { ConversationComponent } from './conversation/conversation.component';
 import { ChangeMessageDialogComponent } from './conversation/change-message-dialog/change-message-dialog.component';
+import { MaterialsService } from './services/materials.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,7 @@ import { ChangeMessageDialogComponent } from './conversation/change-message-dial
     SignInComponent,
     SignUpComponent,
     ErrorComponent,
-    AdminAuthorsComponent,
+    AdminMaterialsComponent,
     GenresComponent,
     QuotesComponent,
     AdminBooksComponent,
@@ -116,8 +118,10 @@ import { ChangeMessageDialogComponent } from './conversation/change-message-dial
     ReviewsService,
     ForumService,
     CookieService,
+    ItemsService,
     AuthGuard,
-    AdminGuard
+    AdminGuard,
+    MaterialsService
   ],
   bootstrap: [AppComponent]
 })
