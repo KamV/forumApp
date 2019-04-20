@@ -7,8 +7,14 @@ var materials = require('./materials.json');
 let express = require("express");
 let app = express();
 let cors = require('cors');
+let fs = require('fs');
+const bodyParser = require('body-parser');
 
 app.use(cors());
+app.use(express.json());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(3000, () => {
  console.log("Server running on port 3000");
@@ -36,11 +42,27 @@ app.get('/materials', (req, res, next) => {
   res.json(materials);
 });
 
+app.post('/materials/add', (req, res, next) => {
+  // let { token } = req.headers;
+  let material = req.body;
+  let index = materials.findIndex((item) => {
+    return item.articule === material.articule && item.name === material.name
+  });
+  if (index === -1) {
+    let data = JSON.stringify(materials);
+    const newId = materials.reduce((prev, current) => (prev.id > current.id) ? prev : current).id + 1;
+    materials.push({
+      id: newId,
+      name: material.name,
+      articule: material.articule
+    });
+    fs.writeFileSync('materials', JSON.stringify(materials));
+  }
+  res.json(materials);
+});
+
 app.post('/materials/update', (req, res, next) => {
   // let { token } = req.headers;
-  console.log(req.body);
-  console.log(req.params);
-  console.log(req.name);
   let material = req.body;
   let index = materials.findIndex((item) => {
     return item.id === material.id

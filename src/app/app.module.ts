@@ -43,7 +43,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthorsComponent } from './authors/authors.component';
 import { AboutAuthorDialogComponent } from './authors/about-author-dialog/about-author-dialog.component';
-import { FavouritesComponent } from './favourites/favourites.component';
+import { MaterialsComponent } from './materials/materials.component';
 import { BooksComponent } from './books/books.component';
 import { QuotesDialogComponent } from './books/quotes-dialog/quotes-dialog.component';
 import { ReviewsComponent } from './reviews/reviews.component';
@@ -69,7 +69,7 @@ import { MaterialsService } from './services/materials.service';
     MainComponent,
     AuthorsComponent,
     AboutAuthorDialogComponent,
-    FavouritesComponent,
+    MaterialsComponent,
     BooksComponent,
     QuotesDialogComponent,
     ReviewsComponent,

@@ -43,7 +43,6 @@ export class AdminMaterialsComponent implements OnInit {
     });
 
     this.materialsService.getMaterials().subscribe(resp => {
-      console.log(resp);
       this.materials = resp;
       this.dataSource = new MatTableDataSource(this.materials);
     },
@@ -52,22 +51,20 @@ export class AdminMaterialsComponent implements OnInit {
     });
   }
 
-  addAuthor() {
-    // this.authorsService.addAuthor(this.form.value).subscribe(resp => {
-    //   this.authors.push(resp);
-    //   this.dataSource = new MatTableDataSource(this.authors);
-    //
-    //   this.form.reset();
-    // },
-    // error => {
-    //       this.router.navigate(['signin']);
-    // });
+  addMaterial() {
+    this.materialsService.addMaterial(this.form.value.name, this.form.value.articule).subscribe(resp => {
+      this.materials = resp;
+      this.dataSource = new MatTableDataSource(this.materials);
+    },
+    error => {
+          this.router.navigate(['signin']);
+    });
   }
 
   updateMaterial(material: any) {
-    console.log(material);
     this.materialsService.updateMaterial(material).subscribe(resp => {
-      console.log('resp', resp);
+      this.materials = resp;
+      this.dataSource = new MatTableDataSource(this.materials);
     },
     error => {
           this.router.navigate(['signin']);

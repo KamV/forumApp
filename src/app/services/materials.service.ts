@@ -21,9 +21,28 @@ export class MaterialsService {
       return this.http.get<Material[]>(GlobalVariable.BASE_API_URL + 'materials');
     }
 
-    updateMaterial(material): Observable<Material[]> {
-      console.log(material);
+    addMaterial(name, articule): Observable<Material[]> {
       let user = JSON.parse(localStorage.getItem('currentUser'));
-      return this.http.post<Material[]>(GlobalVariable.BASE_API_URL + 'materials/update', JSON.parse(material));
+      return this.http.post<Material[]>(
+        GlobalVariable.BASE_API_URL + 'materials/add',
+        JSON.stringify({
+          name: name,
+          articule: articule
+        }),
+        {
+          headers: new HttpHeaders().append('Content-Type', 'application/json')
+        }
+      );
+    }
+
+    updateMaterial(material): Observable<Material[]> {
+      let user = JSON.parse(localStorage.getItem('currentUser'));
+      return this.http.post<Material[]>(
+        GlobalVariable.BASE_API_URL + 'materials/update',
+        JSON.stringify(material),
+        {
+          headers: new HttpHeaders().append('Content-Type', 'application/json')
+        }
+      );
     }
 }

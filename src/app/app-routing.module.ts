@@ -8,7 +8,7 @@ import { QuotesComponent } from './administration/quotes/quotes.component';
 import { AdminBooksComponent } from './administration/books/books.component';
 import { MainComponent } from './main/main.component';
 import { AuthorsComponent } from './authors/authors.component';
-import { FavouritesComponent } from './favourites/favourites.component';
+import { MaterialsComponent } from './materials/materials.component';
 import { BooksComponent } from './books/books.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ForumComponent } from './forum/forum.component';
@@ -27,7 +27,7 @@ export const routes: Routes = [
   { path: 'themes', component: ForumComponent },
   { path: 'reviews/:id', component: ReviewsComponent },
   { path: 'conversation/:themeId', component: ConversationComponent },
-  { path: 'favourites', component: FavouritesComponent },
+  { path: 'materials', component: MaterialsComponent },
   { path: 'admin/materials', component: AdminMaterialsComponent },
   { path: 'admin/genres', component: GenresComponent },
   { path: 'admin/quotes', component: QuotesComponent },

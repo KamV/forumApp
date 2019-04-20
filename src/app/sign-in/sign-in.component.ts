@@ -29,7 +29,7 @@ export class SignInComponent implements OnInit {
   login() {
     this.authService.signIn(this.form.value.login, this.form.value.password).subscribe(resp => {
       localStorage.setItem('currentUser', JSON.stringify({token: resp.token, id: resp.id, isAuth: true, role: resp.role }));
-      this.router.navigate(['favourites']);
+      this.router.navigate(['materials']);
       // this.authService.getMe().subscribe(resp => {
       //   localStorage.setItem('currentUser', JSON.stringify({id: resp.id, isAuth: true, role: resp.roles[0].authority }));
       //   this.router.navigate(['favourites']);
