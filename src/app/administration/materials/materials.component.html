@@ -1,9 +1,12 @@
 <mat-toolbar color="primary">
   <button mat-button routerLink="/materials">Материалы</button>
+  <button mat-button routerLink="/request-creating">Мои заявки</button>
   <span class="flex-row"></span>
   <button mat-button [matMenuTriggerFor]="menu">Администрирование</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/admin/materials">Материалы</button>
+      <button mat-menu-item routerLink="/admin/requests">Заявки</button>
+      <button mat-menu-item routerLink="/admin/stock">Склад</button>
     </mat-menu>
   <button mat-button (click)="logout()">Выйти</button>
 </mat-toolbar>

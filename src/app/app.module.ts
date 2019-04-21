@@ -30,9 +30,9 @@ import { ErrorComponent } from './error/error.component';
 import { AuthService } from './services/auth.service';
 import { AdminMaterialsComponent } from './administration/materials/materials.component';
 import { AuthorsService } from './services/authors.service';
-import { GenresComponent } from './administration/genres/genres.component';
+import { AdminStockComponent } from './administration/stock/stock.component';
 import { GenresService } from './services/genres.service';
-import { QuotesComponent } from './administration/quotes/quotes.component';
+import { AdminRequestsComponent } from './administration/requests/requests.component';
 import { QuotesService } from './services/quotes.service';
 import { BooksService } from './services/books.service';
 import { ItemsService } from './services/items.service';
@@ -44,8 +44,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { AuthorsComponent } from './authors/authors.component';
 import { AboutAuthorDialogComponent } from './authors/about-author-dialog/about-author-dialog.component';
 import { MaterialsComponent } from './materials/materials.component';
-import { BooksComponent } from './books/books.component';
-import { QuotesDialogComponent } from './books/quotes-dialog/quotes-dialog.component';
+import { RequestCreatingComponent } from './request-creating/request-creating.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ReviewsService } from './services/reviews.service';
 import { ReviewChangeDialogComponent } from './reviews/review-change-dialog/review-change-dialog.component';
@@ -55,6 +54,8 @@ import { ForumDialogComponent } from './forum/forum-dialog/forum-dialog.componen
 import { ConversationComponent } from './conversation/conversation.component';
 import { ChangeMessageDialogComponent } from './conversation/change-message-dialog/change-message-dialog.component';
 import { MaterialsService } from './services/materials.service';
+import { RequestsService } from './services/requests.service';
+import { StockService } from './services/stock.service';
 
 @NgModule({
   declarations: [
@@ -63,15 +64,14 @@ import { MaterialsService } from './services/materials.service';
     SignUpComponent,
     ErrorComponent,
     AdminMaterialsComponent,
-    GenresComponent,
-    QuotesComponent,
+    AdminStockComponent,
+    AdminRequestsComponent,
     AdminBooksComponent,
     MainComponent,
     AuthorsComponent,
     AboutAuthorDialogComponent,
     MaterialsComponent,
-    BooksComponent,
-    QuotesDialogComponent,
+    RequestCreatingComponent,
     ReviewsComponent,
     ReviewChangeDialogComponent,
     ForumComponent,
@@ -104,7 +104,6 @@ import { MaterialsService } from './services/materials.service';
   ],
   entryComponents: [
     AboutAuthorDialogComponent,
-    QuotesDialogComponent,
     ReviewChangeDialogComponent,
     ForumDialogComponent,
     ChangeMessageDialogComponent
@@ -121,7 +120,9 @@ import { MaterialsService } from './services/materials.service';
     ItemsService,
     AuthGuard,
     AdminGuard,
-    MaterialsService
+    MaterialsService,
+    RequestsService,
+    StockService
   ],
   bootstrap: [AppComponent]
 })

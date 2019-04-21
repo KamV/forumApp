@@ -1,0 +1,95 @@
+<mat-toolbar color="primary">
+  <button mat-button *ngIf="showAdminMenu" routerLink="/materials">Материалы</button>
+  <span class="flex-row"></span>
+  <button mat-button *ngIf="showAdminMenu" [matMenuTriggerFor]="menu">Администрирование</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/admin/materials">Материалы</button>
+      <button mat-menu-item routerLink="/admin/requests">Заявки</button>
+      <button mat-menu-item routerLink="/admin/stock">Склад</button>
+    </mat-menu>
+  <button mat-button (click)="logout()">Выйти</button>
+</mat-toolbar>
+
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (submit)="addStockItem()">
+      <mat-form-field>
+        <mat-select placeholder="Наименование" [(ngModel)]="selectedValue" formControlName="name" required>
+          <mat-option *ngFor="let material of materials" [value]="material.name">
+            {{material.name}}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+        <mat-form-field class="">
+          <input type='number' matInput placeholder="Минимальный объем" formControlName="minValue" required/>
+        </mat-form-field>
+        <mat-form-field class="">
+          <input type="date" placeholder="dd.MM.yyyy" matInput placeholder="Дата поверки" formControlName="checkDate" required/>
+        </mat-form-field>
+        <mat-form-field class="">
+          <input type='number' matInput placeholder="Объем на складе" formControlName="value" required/>
+        </mat-form-field>
+      <button type="" mat-raised-button color="primary">Добавить</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<!-- <div class="search">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
+  </mat-form-field>
+</div> -->
+
+<mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Наименование </th>
+    <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="minValue">
+    <th mat-header-cell *matHeaderCellDef> Минимальный<br/>остаточный<br/>объем </th>
+    <td mat-cell *matCellDef="let element" >
+      <input matInput type="text" placeholder="Минимальный остаточный объем" [(ngModel)]="element.minValue" required/>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="checkDate">
+    <th mat-header-cell *matHeaderCellDef> Дата<br/>следующей<br/>поверки </th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.color]="getDateColor(element.checkDate)"
+    >
+      {{ element.checkDate }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="value">
+    <th mat-header-cell *matHeaderCellDef> Объем<br/>на складе </th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.color]="getColor(element.value, element.minValue)"
+    >
+      <input matInput type="text" placeholder="Объем на складе" [(ngModel)]="element.value" required/>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="updateButton">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element" >
+      <button type="" mat-button color="primary" (click)="updateStockItem(element)"> Обновить </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="deleteButton">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element" >
+      <button type="" mat-button color="primary" (click)="deleteStockItem(element)"> Удалить </button>
+    </td>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns">
+  </mat-row>
+</mat-table>

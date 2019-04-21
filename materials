@@ -1,1 +1,1 @@
-[{"id":1,"name":"Платина","articule":12345},{"id":2,"name":"Пластик","articule":54321},{"id":3,"name":"Латунь","articule":54389},{"id":4,"name":"ДСВ-2-Л","articule":54347},{"id":5,"name":"Сталь","articule":"43215"}]
+[{"id":1,"name":"Платина","articule":"123456"},{"id":2,"name":"Пластик","articule":54321},{"id":3,"name":"Латунь","articule":54389},{"id":4,"name":"ДСВ-2-Л","articule":54347}]

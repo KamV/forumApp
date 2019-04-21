@@ -1,10 +1,9 @@
 export interface User {
   id: number;
-  email: string;
-  nickname: string;
-  loginCount:string;
-  birthDate: number;
-  registrationDate: number;
+  login: string;
+  password: string;
+  name: string;
+  department: string;
   roles: Role[]
 }
 
@@ -60,6 +59,26 @@ export interface Material {
   id: number;
   name: string;
   articule: string;
+}
+
+export interface Request {
+  id: number;
+  author: User;
+  name: string;
+  value: number;
+  date: string;
+  comment: string;
+  status: string;
+}
+
+export interface StockItem {
+  id: number;
+  name: string;
+  minValue: number;
+  checkDate: string;
+  value: number;
+  valueInWork: number;
+  annualConsumption: number;
 }
 
 export interface Quote {

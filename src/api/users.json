@@ -3,12 +3,16 @@
     "id": 1,
     "login": "admin",
     "password": "admin",
+    "name": "Admin Admin",
+    "department": "1",
     "role": "ADMIN"
   },
   {
     "id": 2,
     "login": "nastya",
     "password": "nastya",
+    "name": "Басалаева Анастасия",
+    "department": "1",
     "role": "USER"
   }
 ]

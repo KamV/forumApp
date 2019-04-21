@@ -1,40 +1,7 @@
 [
   {
-    "id": 1,
-    "name": "Металл",
-    "minValue": 10000,
-    "checkDate": "31.12.2019",
-    "value": 2000,
-    "monthlyConsumption": 100,
-    "nextMonthlyConsumption": 100,
-    "valueInWork": 10,
-    "annualConsumption": 1200
-  },
-  {
-    "id": 2,
-    "name": "Пластик",
-    "minValue": 3000,
-    "checkDate": "31.12.2019",
-    "value": 45000,
-    "monthlyConsumption": 3000,
-    "nextMonthlyConsumption": 1000,
-    "valueInWork": 300,
-    "annualConsumption": 36000
-  },
-  {
-    "id": 3,
-    "name": "Латунь",
-    "minValue": 3000,
-    "checkDate": "19.05.2019",
-    "value": 4000,
-    "monthlyConsumption": 2000,
-    "nextMonthlyConsumption": 3000,
-    "valueInWork": 300,
-    "annualConsumption": 36000
-  },
-  {
-    "id": 4,
-    "name": "ДСВ-2-Л",
+    "id": 0,
+    "name": "Платина",
     "minValue": 3000,
     "checkDate": "18.06.2019",
     "value": 3000,

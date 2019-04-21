@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { Material } from '../../declarations';
 
 @Component({
-  selector: 'app-materials',
+  selector: 'app-admin-materials',
   templateUrl: './materials.component.html',
   styleUrls: ['./materials.component.css']
 })
